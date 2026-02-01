@@ -1,7 +1,7 @@
 <template>
   <div class="app" :class="{ light: isLight }">
     <Navbar :isLight="isLight" @toggle-theme="toggleTheme" />
-    <Hero />
+    <Hero :isLight="isLight" />
     <About />
     <Experience @open-image-modal="openImageModal" />
     <Projects />
@@ -56,8 +56,24 @@ export default {
   },
 
   data() {
+    // Initialize theme from localStorage before rendering
+    let isLight = false;
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved === "light") {
+        isLight = true;
+      } else if (
+        !saved &&
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: light)").matches
+      ) {
+        isLight = true;
+      }
+    } catch (e) {}
+
     return {
-      isLight: false,
+      isLight,
       imageModal: {
         show: false,
         src: "",
@@ -119,18 +135,7 @@ export default {
   },
 
   mounted() {
-    // restore saved preference
-    try {
-      const saved = localStorage.getItem("theme");
-      if (saved === "light") this.isLight = true;
-      if (
-        !saved &&
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: light)").matches
-      ) {
-        this.isLight = true;
-      }
-    } catch (e) {}
+    // Apply theme to root element after component mounts
     this.applyTheme();
   },
 };

@@ -2,6 +2,7 @@
   <section class="hero">
     <div class="hero-background">
       <Squares
+        v-if="!isLight"
         class="squares-dark"
         direction="diagonal"
         :speed="0.2"
@@ -11,12 +12,13 @@
         :noGradient="true"
       />
       <Squares
+        v-if="isLight"
         class="squares-light"
         direction="diagonal"
         :speed="0.2"
         :squareSize="40"
-        borderColor="rgba(0, 0, 0, 0.08)"
-        hoverFillColor="rgba(0, 0, 0, 0.04)"
+        borderColor="rgba(0, 0, 0, 0.15)"
+        hoverFillColor="rgba(0, 0, 0, 0.08)"
         :noGradient="true"
       />
     </div>
@@ -78,6 +80,12 @@ export default {
   name: "Hero",
   components: {
     Squares,
+  },
+  props: {
+    isLight: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -298,11 +306,13 @@ export default {
 
 <style>
 /* Unscoped styles for theme-based square visibility */
-.light .squares-dark {
+.app.light .squares-dark,
+:root.light .squares-dark {
   display: none !important;
 }
 
-.light .squares-light {
+.app.light .squares-light,
+:root.light .squares-light {
   display: block !important;
 }
 </style>

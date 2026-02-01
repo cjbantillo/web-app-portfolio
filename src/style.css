@@ -1,0 +1,374 @@
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   THEME TOKENS — DARK (default)
+   ============================================================ */
+:root {
+  /* Core surface / text */
+  --bg-primary: #0c0c0c;
+  --bg-secondary: #141414;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #222222;
+  --bg-overlay: rgba(12, 12, 12, 0.85);
+
+  --text-primary: #f2f2f2;
+  --text-secondary: #a0a0a0;
+  --text-muted: #5c5c5c;
+
+  /* Accent — single sharp white + restrained green for CTA only */
+  --accent: #ffffff;
+  --accent-dim: rgba(255, 255, 255, 0.12);
+  --accent-glow: rgba(255, 255, 255, 0.06);
+  --cta: #22c55e; /* one green CTA anchor */
+  --cta-hover: #16a34a;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --border-focus: rgba(255, 255, 255, 0.45);
+
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 6px 28px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(255, 255, 255, 0.07);
+
+  /* Nav frosted panel */
+  --nav-bg: rgba(12, 12, 12, 0.72);
+
+  /* Scrollbar */
+  --scrollbar-track: #141414;
+  --scrollbar-thumb: #333333;
+}
+
+/* ============================================================
+   THEME TOKENS — LIGHT
+   ============================================================ */
+:root.light {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ececec;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f7f7f7;
+  --bg-overlay: rgba(245, 245, 245, 0.88);
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+
+  --accent: #1a1a1a;
+  --accent-dim: rgba(0, 0, 0, 0.07);
+  --accent-glow: rgba(0, 0, 0, 0.04);
+  --cta: #16a34a;
+  --cta-hover: #15803d;
+
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.22);
+  --border-focus: rgba(0, 0, 0, 0.4);
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 6px 28px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 24px rgba(0, 0, 0, 0.04);
+
+  --nav-bg: rgba(245, 245, 245, 0.78);
+
+  --scrollbar-track: #e8e8e8;
+  --scrollbar-thumb: #aaaaaa;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Fira Code", "Consolas", monospace;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  transition: color 0.35s ease;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+a:hover {
+  opacity: 0.7;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+.section {
+  padding: 7rem 0;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* ============================================================
+   SECTION HEADING (shared)
+   ============================================================ */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Fira Code", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  transition: color 0.35s ease;
+}
+.section-label i {
+  font-size: 0.75rem;
+}
+
+.section-title {
+  margin-bottom: 0.6rem;
+}
+
+.section-divider {
+  width: 36px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 2.8rem;
+  transition: background 0.35s ease;
+}
+
+/* ============================================================
+   CARD BASE
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   BADGE / TAG
+   ============================================================ */
+.badge {
+  display: inline-block;
+  font-family: "Fira Code", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  background: var(--accent-dim);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  letter-spacing: 0.02em;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+.badge:hover {
+  background: var(--accent-glow);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: "Fira Code", monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: all 0.25s ease;
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  opacity: 1;
+}
+
+.btn-cta {
+  background: var(--cta);
+  color: #ffffff;
+  border-color: var(--cta);
+}
+.btn-cta:hover {
+  background: var(--cta-hover);
+  border-color: var(--cta-hover);
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
+}
+
+/* ============================================================
+   ANIMATIONS (subtle, refined)
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anim-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* staggered delays */
+.anim-delay-1 {
+  animation-delay: 0.08s;
+}
+.anim-delay-2 {
+  animation-delay: 0.16s;
+}
+.anim-delay-3 {
+  animation-delay: 0.24s;
+}
+.anim-delay-4 {
+  animation-delay: 0.32s;
+}
+.anim-delay-5 {
+  animation-delay: 0.4s;
+}
+.anim-delay-6 {
+  animation-delay: 0.48s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .card,
+  .anim-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE BASE
+   ============================================================ */
+@media (max-width: 768px) {
+  .section {
+    padding: 4.5rem 0;
+  }
+  .container {
+    padding: 0 1.1rem;
+  }
+}

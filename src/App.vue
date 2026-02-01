@@ -57,19 +57,14 @@ export default {
 
   data() {
     // Initialize theme from localStorage before rendering
+    // Default to dark mode
     let isLight = false;
     try {
       const saved = localStorage.getItem("theme");
       if (saved === "light") {
         isLight = true;
-      } else if (
-        !saved &&
-        typeof window !== "undefined" &&
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: light)").matches
-      ) {
-        isLight = true;
       }
+      // Removed system preference check - dark mode is now default
     } catch (e) {}
 
     return {

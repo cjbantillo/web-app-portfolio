@@ -1,5 +1,25 @@
 <template>
   <section class="hero">
+    <div class="hero-background">
+      <Squares
+        class="squares-dark"
+        direction="diagonal"
+        :speed="0.2"
+        :squareSize="40"
+        borderColor="rgba(255, 255, 255, 0.08)"
+        hoverFillColor="rgba(255, 255, 255, 0.12)"
+        :noGradient="true"
+      />
+      <Squares
+        class="squares-light"
+        direction="diagonal"
+        :speed="0.2"
+        :squareSize="40"
+        borderColor="rgba(0, 0, 0, 0.08)"
+        hoverFillColor="rgba(0, 0, 0, 0.04)"
+        :noGradient="true"
+      />
+    </div>
     <div class="container hero-inner">
       <div class="hero-content">
         <p class="hero-eyebrow anim-fade-up">
@@ -52,8 +72,13 @@
 </template>
 
 <script>
+import Squares from "./Squares.vue";
+
 export default {
   name: "Hero",
+  components: {
+    Squares,
+  },
   data() {
     return {
       heroStats: [
@@ -74,6 +99,26 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 5rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.squares-dark {
+  display: block;
+}
+
+.squares-light {
+  display: none;
 }
 
 .hero-inner {
@@ -82,7 +127,32 @@ export default {
   grid-template-columns: 1.15fr 0.85fr;
   gap: 3rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 }
+
+.hero-inner > * {
+  pointer-events: auto;
+}
+
+.hero-bottom-rule {
+  position: relative;
+  z-index: 1;
+}
+.hero-content {
+  pointer-events: none;
+}
+
+.hero-content > * {
+  pointer-events: none;
+}
+
+.hero-content a,
+.hero-content button {
+  pointer-events: auto;
+}
+
 .hero-inner .hero-eyebrow {
   font-family: "Fira Code", monospace;
   font-size: 0.72rem;
@@ -134,6 +204,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 .hero-inner .hero-portrait img {
@@ -147,6 +218,7 @@ export default {
     transform 0.3s ease,
     box-shadow 0.3s ease,
     border-color 0.3s ease;
+  pointer-events: auto;
 }
 
 .hero-inner .hero-portrait img:hover {
@@ -160,6 +232,7 @@ export default {
   gap: 2.5rem;
   flex-wrap: wrap;
   margin-top: 1.5rem;
+  pointer-events: none;
 }
 .stat {
   display: flex;
@@ -220,5 +293,16 @@ export default {
     flex-direction: column;
     gap: 1rem;
   }
+}
+</style>
+
+<style>
+/* Unscoped styles for theme-based square visibility */
+.light .squares-dark {
+  display: none !important;
+}
+
+.light .squares-light {
+  display: block !important;
 }
 </style>

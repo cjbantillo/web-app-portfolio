@@ -1,5 +1,55 @@
-# Vue 3 + Vite
+# Web Portfolio
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Personal portfolio website for Christian James M. Bantillo. Built with Vue 3 and Vite, featuring modular components and organized assets for projects, certifications, and profile media.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Tech Stack
+
+- Vue 3
+- Vite
+- JavaScript (ESM)
+- CSS
+- Netlify (deployment)
+
+## Scripts
+
+- `npm run dev` — start local dev server
+- `npm run build` — build for production
+- `npm run preview` — preview production build
+
+## File Structure
+
+```
+.
+├── index.html
+├── netlify.toml
+├── package.json
+├── public/
+│   └── _redirects
+└── src/
+	├── main.js
+	├── App.vue
+	├── style.css
+	├── assets/
+	│   ├── Certificates/
+	│   └── img/
+	└── components/
+		├── About.vue
+		├── CertificateModal.vue
+		├── Certifications.vue
+		├── Contact.vue
+		├── Experience.vue
+		├── Footer.vue
+		├── Hero.vue
+		├── ImageModal.vue
+		├── Navbar.vue
+		├── Projects.vue
+		└── Skills.vue
+```
+
+## Project Context
+
+This site highlights academic, internship, startup, and freelance work, along with certifications and technical skills. It is structured as a single-page portfolio with reusable Vue components and centralized styling.
+
+## Personal Context
+
+Christian James M. Bantillo is a graduating BSIT student at Caraga State University, focused on full-stack development, UI/UX, and startup leadership. Full details are maintained in context-for-myself.md.

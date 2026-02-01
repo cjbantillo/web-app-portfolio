@@ -9,7 +9,7 @@
           Christian James<br />M. Bantillo
         </h1>
         <p class="hero-sub anim-fade-up anim-delay-2">
-          Full-Stack Developer · Startup CEO · Tech Innovator
+          Full-Stack Developer · Creator · Tech Innovator
         </p>
         <p class="hero-desc anim-fade-up anim-delay-3">
           Building elegant digital solutions with cutting-edge technology and

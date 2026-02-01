@@ -1,9 +1,9 @@
-
-
 ---
 
-## 📌 Portfolio Context — Christian James M. Bantillo
-my formal pic image 1x1 sizesrc\assets\img\IMG_0436.jpg
+# 👤 Personal Context — Christian James M. Bantillo
+
+- Formal photo (1x1): `src/assets/img/IMG_0436.jpg`
+
 I am Christian James M. Bantillo, a graduating Bachelor of Science in Information Technology (BSIT) student at Caraga State University – Ampayon Main Branch. I am a passionate learner focused on continuous upskilling and building real-world systems through academic, freelance, gig-based, and internship projects.
 
 My experience spans frontend development, early-stage full-stack systems, UI enhancement, and creative media production. Many of my projects were developed under short deadlines (1–2 weeks), requiring rapid prototyping, effective use of AI tools, and strong collaboration in small teams.
@@ -283,3 +283,30 @@ whatsapp: +639685752351
 facebook name: Christian James M. Bantillo
 my github: https://github.com/cjbantillo
 linkedin: Christian James M. Bantillo www.linkedin.com/in/cjbantillo
+
+---
+
+# 🗂️ Project Context — Web Portfolio
+
+This project is a personal portfolio website that showcases academic, internship, startup, and freelance work along with certifications, skills, and contact details.
+
+**Tech Stack:**
+
+- Vue 3
+- Vite
+- JavaScript (ESM)
+- CSS
+- Netlify (deployment)
+
+**Key Structure:**
+
+- Entry: `index.html`
+- App shell: `src/main.js`, `src/App.vue`
+- Global styles: `src/style.css`
+- Components: `src/components/*`
+- Assets: `src/assets/img/`, `src/assets/Certificates/`
+
+**Notes:**
+
+- The portfolio is built as a single-page layout with modular Vue components.
+- Content for sections (hero, skills, projects, certifications, etc.) is organized inside `src/components`.

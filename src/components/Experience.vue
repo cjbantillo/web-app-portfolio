@@ -54,6 +54,35 @@
 </template>
 
 <script>
+const galleryImages = {
+  ocidSystem: new URL("../assets/img/OCID-system.png", import.meta.url).href,
+  ocidCertificate: new URL(
+    "../assets/img/OCID-Certificate.jpeg",
+    import.meta.url,
+  ).href,
+  teamDevelopment: new URL(
+    "../assets/img/550958202_1298140575118436_1356883172998839872_n.jpg",
+    import.meta.url,
+  ).href,
+  teamCollaboration: new URL(
+    "../assets/img/550513469_1349979503351633_3662702284138704297_n.jpg",
+    import.meta.url,
+  ).href,
+  pitchingCompetition: new URL(
+    "../assets/img/pitching-competition-pagsanyog.png",
+    import.meta.url,
+  ).href,
+  pagsanyog: new URL("../assets/img/pagsanyog.jpeg", import.meta.url).href,
+  trophyRegional: new URL(
+    "../assets/img/trophy-pitch-regional.jpeg",
+    import.meta.url,
+  ).href,
+  trioRegional: new URL(
+    "../assets/img/trio-regional-pitch.jpeg",
+    import.meta.url,
+  ).href,
+};
+
 export default {
   name: "Experience",
   data() {
@@ -79,17 +108,17 @@ export default {
             "Figma",
           ],
           gallery: [
-            { src: "/src/assets/img/OCID-system.png", alt: "OCID Dashboard" },
+            { src: galleryImages.ocidSystem, alt: "OCID Dashboard" },
             {
-              src: "/src/assets/img/OCID-Certificate.jpeg",
+              src: galleryImages.ocidCertificate,
               alt: "Internship Certificate",
             },
             {
-              src: "/src/assets/img/550958202_1298140575118436_1356883172998839872_n.jpg",
+              src: galleryImages.teamDevelopment,
               alt: "Team Development",
             },
             {
-              src: "/src/assets/img/550513469_1349979503351633_3662702284138704297_n.jpg",
+              src: galleryImages.teamCollaboration,
               alt: "Team Collaboration",
             },
           ],
@@ -111,19 +140,19 @@ export default {
           stack: ["Python", "Node.js", "React", "Vue.js", "PostgreSQL", "IoT"],
           gallery: [
             {
-              src: "/src/assets/img/pitching-competition-pagsanyog.png",
+              src: galleryImages.pitchingCompetition,
               alt: "University Pitching Competition",
             },
             {
-              src: "/src/assets/img/pagsanyog.jpeg",
+              src: galleryImages.pagsanyog,
               alt: "University Competition",
             },
             {
-              src: "/src/assets/img/trophy-pitch-regional.jpeg",
+              src: galleryImages.trophyRegional,
               alt: "Regional Trophy",
             },
             {
-              src: "/src/assets/img/trio-regional-pitch.jpeg",
+              src: galleryImages.trioRegional,
               alt: "Regional Pitch Team",
             },
           ],

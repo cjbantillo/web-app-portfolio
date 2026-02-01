@@ -66,7 +66,7 @@ export default {
           icon: "fab fa-facebook",
           label: "Facebook",
           value: "Christian James M. Bantillo",
-          href: "https://www.facebook.com/profile.php?id=100008629815223",
+          href: "https://www.facebook.com/ems.sem148/",
           target: "_blank",
         },
       ],

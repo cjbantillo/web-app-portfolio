@@ -3,6 +3,7 @@
     <Navbar :isLight="isLight" @toggle-theme="toggleTheme" />
     <Hero :isLight="isLight" />
     <About />
+    <Education />
     <Experience @open-image-modal="openImageModal" />
     <Projects />
     <Skills />
@@ -30,6 +31,7 @@
 import Navbar from "./components/Navbar.vue";
 import Hero from "./components/Hero.vue";
 import About from "./components/About.vue";
+import Education from "./components/Education.vue";
 import Experience from "./components/Experience.vue";
 import Projects from "./components/Projects.vue";
 import Skills from "./components/Skills.vue";
@@ -45,6 +47,7 @@ export default {
     Navbar,
     Hero,
     About,
+    Education,
     Experience,
     Projects,
     Skills,

@@ -6,48 +6,54 @@
       <div class="section-divider"></div>
 
       <div class="experience-timeline">
-        <div class="exp-card card" v-for="exp in experiences" :key="exp.id">
-          <div class="exp-meta">
-            <div class="exp-meta-left">
-              <span class="exp-role-badge badge">{{ exp.role }}</span>
-              <span class="exp-date"
-                ><i class="fas fa-calendar-alt"></i> {{ exp.date }}</span
-              >
+        <div class="timeline-rail" aria-hidden="true"></div>
+
+        <article class="timeline-item" v-for="exp in experiences" :key="exp.id">
+          <div class="timeline-node" aria-hidden="true"></div>
+
+          <div class="timeline-card exp-card">
+            <div class="exp-meta">
+              <div class="exp-meta-left">
+                <span class="exp-role-badge badge">{{ exp.role }}</span>
+                <span class="exp-date"
+                  ><i class="fas fa-calendar-alt"></i> {{ exp.date }}</span
+                >
+              </div>
+            </div>
+
+            <h3 class="exp-title">{{ exp.title }}</h3>
+            <p class="exp-org">{{ exp.org }}</p>
+
+            <ul class="exp-list">
+              <li v-for="(c, i) in exp.contributions" :key="i">
+                <i class="fas fa-check"></i>
+                <span>{{ c }}</span>
+              </li>
+            </ul>
+
+            <div v-if="exp.achievement" class="exp-achievement">
+              <i class="fas fa-trophy"></i>
+              <span>{{ exp.achievement }}</span>
+            </div>
+
+            <div class="exp-stack">
+              <span class="badge" v-for="t in exp.stack" :key="t">{{ t }}</span>
+            </div>
+
+            <div v-if="exp.gallery && exp.gallery.length" class="exp-gallery">
+              <div class="gallery-grid">
+                <img
+                  v-for="(img, idx) in exp.gallery"
+                  :key="idx"
+                  :src="img.src"
+                  :alt="img.alt"
+                  class="gallery-img"
+                  @click="$emit('open-image-modal', img.src, img.alt)"
+                />
+              </div>
             </div>
           </div>
-
-          <h3 class="exp-title">{{ exp.title }}</h3>
-          <p class="exp-org">{{ exp.org }}</p>
-
-          <ul class="exp-list">
-            <li v-for="(c, i) in exp.contributions" :key="i">
-              <i class="fas fa-check"></i>
-              <span>{{ c }}</span>
-            </li>
-          </ul>
-
-          <div v-if="exp.achievement" class="exp-achievement">
-            <i class="fas fa-trophy"></i>
-            <span>{{ exp.achievement }}</span>
-          </div>
-
-          <div class="exp-stack">
-            <span class="badge" v-for="t in exp.stack" :key="t">{{ t }}</span>
-          </div>
-
-          <div v-if="exp.gallery && exp.gallery.length" class="exp-gallery">
-            <div class="gallery-grid">
-              <img
-                v-for="(img, idx) in exp.gallery"
-                :key="idx"
-                :src="img.src"
-                :alt="img.alt"
-                class="gallery-img"
-                @click="$emit('open-image-modal', img.src, img.alt)"
-              />
-            </div>
-          </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -159,17 +165,28 @@ export default {
         },
         {
           id: 3,
-          role: "Graphic Designer & Video Editor",
-          date: "2023, 2025",
-          title: "Creative Digital Production",
-          org: "Elite Royalties · i-Singapore",
+          role: "Video Editor & Graphic Designer",
+          date: "2024 (1 Month)",
+          title: "Video Editing & Asset Design",
+          org: "iSchool PTE LTD",
           contributions: [
-            "Short-form podcast clips for social media reels",
-            "Acrylic graphic designs for marketing and advertising",
-            "Video editing for promotional and brand content",
-            "Brand asset creation and design consistency across campaigns",
+            "Video editing for various digital platforms and projects",
+            "Creating and integrating graphic design assets to support video content",
           ],
           stack: ["Adobe Premiere Pro", "CapCut", "Canva", "Figma"],
+        },
+        {
+          id: 4,
+          role: "Graphic Designer & Video Editor",
+          date: "2023 (2 Months)",
+          title: "Digital Media Production",
+          org: "Elite Royalties",
+          contributions: [
+            "Graphic design, video production, and podcast editing",
+            "Cutting and optimizing niche videos for TikTok",
+            "Short-form podcast clips for social media reels",
+          ],
+          stack: ["Adobe Premiere Pro", "CapCut", "Canva"],
         },
       ],
     };
@@ -179,13 +196,67 @@ export default {
 
 <style scoped>
 .experience-timeline {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 2rem;
+  padding-left: 2.6rem;
+}
+
+.timeline-rail {
+  position: absolute;
+  left: calc(3.56rem - 1px);
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.04)
+  );
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  column-gap: 1.5rem;
+  align-items: start;
+}
+
+.timeline-node {
+  position: relative;
+  z-index: 1;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  margin-left: 0.6rem;
+  background: #2f80ff;
+  box-shadow:
+    0 0 0 4px rgba(47, 128, 255, 0.16),
+    0 0 14px rgba(47, 128, 255, 0.5);
+}
+
+.timeline-item:first-of-type .timeline-node {
+  background: #0f172a;
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.08),
+    0 0 14px rgba(255, 255, 255, 0.2);
+}
+
+.timeline-card {
+  padding: 0 0 0.15rem 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  animation: none;
+  opacity: 1;
 }
 
 .exp-card {
-  padding: 1.75rem;
+  padding: 0;
 }
 
 .exp-meta {
@@ -300,6 +371,18 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .experience-timeline {
+    padding-left: 1.35rem;
+  }
+
+  .timeline-rail {
+    left: calc(2.31rem - 1px);
+  }
+
+  .timeline-item {
+    column-gap: 0.9rem;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }

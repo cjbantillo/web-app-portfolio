@@ -6,22 +6,27 @@
       <div class="section-divider"></div>
 
       <div class="projects-grid">
-        <div class="card project-card" v-for="p in projects" :key="p.id">
+        <GlowCard class="project-card" v-for="p in projects" :key="p.id">
           <div class="project-icon"><i :class="p.icon"></i></div>
           <h3>{{ p.title }}</h3>
           <p class="project-desc">{{ p.desc }}</p>
           <div class="project-stack">
             <span class="badge" v-for="t in p.stack" :key="t">{{ t }}</span>
           </div>
-        </div>
+        </GlowCard>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import GlowCard from "./GlowCard.vue";
+
 export default {
   name: "Projects",
+  components: {
+    GlowCard,
+  },
   data() {
     return {
       projects: [

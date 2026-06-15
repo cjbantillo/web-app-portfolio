@@ -1,16 +1,22 @@
 <template>
   <div class="app" :class="{ light: isLight }">
-    <Navbar :isLight="isLight" @toggle-theme="toggleTheme" />
-    <Hero :isLight="isLight" />
-    <About />
-    <Education />
-    <Experience @open-image-modal="openImageModal" />
-    <Projects />
-    <Skills />
-    <Certifications @open-cert-modal="openCertModal" />
-    <Contact />
-    <Footer />
+    <div class="ambient-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
 
+    <Navbar :isLight="isLight" @toggle-theme="toggleTheme" />
+    <Hero :isLight="isLight" v-reveal />
+    <MiniGame v-reveal />
+    <About v-reveal />
+    <Education v-reveal />
+    <Experience @open-image-modal="openImageModal" v-reveal />
+    <Projects v-reveal />
+    <Skills v-reveal />
+    <Certifications @open-cert-modal="openCertModal" v-reveal />
+    <Contact v-reveal />
+    <Footer v-reveal />
     <ImageModal
       :show="imageModal.show"
       :src="imageModal.src"
@@ -40,6 +46,7 @@ import Contact from "./components/Contact.vue";
 import Footer from "./components/Footer.vue";
 import ImageModal from "./components/ImageModal.vue";
 import CertificateModal from "./components/CertificateModal.vue";
+import MiniGame from "./components/MiniGame.vue";
 
 export default {
   name: "App",
@@ -56,6 +63,7 @@ export default {
     Footer,
     ImageModal,
     CertificateModal,
+    MiniGame,
   },
 
   data() {
@@ -143,14 +151,82 @@ export default {
      SCOPED STYLES
      ══════════════════════════════════════════════════════════ -->
 <style scoped>
-/* Application wrapper */
+/* Global App Styles */
 .app {
   min-height: 100vh;
+  position: relative;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   background: var(--bg-primary);
   color: var(--text-primary);
-  transition:
-    background 0.35s ease,
-    color 0.35s ease;
+}
+
+/* Ambient Orbs */
+.ambient-orbs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+  width: 40vw;
+  height: 40vw;
+  background: rgba(34, 197, 94, 0.15); /* Green accent */
+  top: -10vw;
+  left: -10vw;
+}
+
+.orb-2 {
+  width: 35vw;
+  height: 35vw;
+  background: rgba(59, 130, 246, 0.15); /* Blue accent */
+  bottom: -10vw;
+  right: -5vw;
+  animation-delay: -5s;
+  animation-duration: 25s;
+}
+
+.orb-3 {
+  width: 30vw;
+  height: 30vw;
+  background: rgba(168, 85, 247, 0.12); /* Purple accent */
+  top: 40vh;
+  left: 50vw;
+  animation-delay: -10s;
+  animation-duration: 30s;
+}
+
+.app.light .orb {
+  opacity: 0.6;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3vw, -5vh) scale(1.1);
+  }
+  66% {
+    transform: translate(-2vw, 4vh) scale(0.9);
+  }
+  100% {
+    transform: translate(1vw, -2vh) scale(1.05);
+  }
 }
 
 /* Image Modal */

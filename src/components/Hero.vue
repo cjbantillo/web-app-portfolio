@@ -31,7 +31,8 @@
           Christian James<br />M. Bantillo
         </h1>
         <p class="hero-sub anim-fade-up anim-delay-2">
-          Full-Stack Developer · Creator · Tech Innovator
+          <span class="typed-text">{{ typeValue }}</span>
+          <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
         </p>
         <p class="hero-desc anim-fade-up anim-delay-3">
           Building elegant digital solutions with cutting-edge technology and
@@ -89,12 +90,57 @@ export default {
   },
   data() {
     return {
+      typeValue: "",
+      typeStatus: false,
+      displayTextArray: [
+        "Full-Stack Developer",
+        "Creative Problem Solver",
+        "Tech Innovator",
+        "Video Editor & Designer",
+        "Always Upskilling",
+      ],
+      typingSpeed: 100,
+      erasingSpeed: 50,
+      newTextDelay: 2000,
+      displayTextArrayIndex: 0,
+      charIndex: 0,
       heroStats: [
         { value: "4+", label: "Years Experience" },
         { value: "12+", label: "Certifications" },
         { value: "2nd", label: "Regional Runner-Up" },
       ],
     };
+  },
+  created() {
+    setTimeout(this.typeText, this.newTextDelay + 200);
+  },
+  methods: {
+    typeText() {
+      if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+        if (!this.typeStatus) this.typeStatus = true;
+        this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(this.charIndex);
+        this.charIndex += 1;
+        setTimeout(this.typeText, this.typingSpeed);
+      } else {
+        this.typeStatus = false;
+        setTimeout(this.eraseText, this.newTextDelay);
+      }
+    },
+    eraseText() {
+      if (this.charIndex > 0) {
+        if (!this.typeStatus) this.typeStatus = true;
+        this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(0, this.charIndex - 1);
+        this.charIndex -= 1;
+        setTimeout(this.eraseText, this.erasingSpeed);
+      } else {
+        this.typeStatus = false;
+        this.displayTextArrayIndex += 1;
+        if (this.displayTextArrayIndex >= this.displayTextArray.length) {
+          this.displayTextArrayIndex = 0;
+        }
+        setTimeout(this.typeText, this.typingSpeed + 1000);
+      }
+    },
   },
 };
 </script>
@@ -186,10 +232,37 @@ export default {
 
 .hero-inner .hero-sub {
   font-family: "Fira Code", monospace;
-  font-size: 1rem;
-  color: var(--text-secondary);
+  font-size: 1.15rem;
+  color: var(--accent);
   margin-bottom: 1.1rem;
   transition: color 0.35s;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+.hero-sub .cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: var(--accent);
+  animation: blink 1s infinite;
+  margin-left: 0.1rem;
+}
+
+.hero-sub .cursor.typing {
+  animation: none;
+}
+
+@keyframes blink {
+  49% {
+    background-color: var(--accent);
+  }
+  50% {
+    background-color: transparent;
+  }
+  99% {
+    background-color: transparent;
+  }
 }
 
 .hero-inner .hero-desc {

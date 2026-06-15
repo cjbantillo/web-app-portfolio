@@ -6,8 +6,8 @@
       <div class="section-divider"></div>
 
       <div class="skills-grid">
-        <div
-          class="card skill-card"
+        <GlowCard
+          class="skill-card"
           v-for="cat in skillCategories"
           :key="cat.title"
         >
@@ -18,15 +18,20 @@
           <div class="skill-tags">
             <span class="badge" v-for="s in cat.skills" :key="s">{{ s }}</span>
           </div>
-        </div>
+        </GlowCard>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import GlowCard from "./GlowCard.vue";
+
 export default {
   name: "Skills",
+  components: {
+    GlowCard,
+  },
   data() {
     return {
       skillCategories: [

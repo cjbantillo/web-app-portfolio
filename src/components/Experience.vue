@@ -142,7 +142,7 @@ export default {
             "Revenue projections and government / hospital partnership planning",
           ],
           achievement:
-            "🥈 2nd Runner-Up — DICT Caraga Regional Pitching Competition (RPC 2025-26)",
+            "🥈 2nd Runner-Up — DICT Caraga RPC (2025-26) | 🚀 Graduate — NavigatU TBI Incubation (Cohort 9)",
           stack: ["Python", "Node.js", "React", "Vue.js", "PostgreSQL", "IoT"],
           gallery: [
             {
@@ -188,6 +188,20 @@ export default {
           ],
           stack: ["Adobe Premiere Pro", "CapCut", "Canva"],
         },
+        {
+          id: 5,
+          role: "Freelance Full-Stack Developer",
+          date: "May 2026 – July 2026",
+          title: "Private Company (NDA)",
+          org: "Confidential (NDA)",
+          contributions: [
+            "Built and maintained full-stack features across frontend and backend",
+            "Implemented responsive UI components and RESTful APIs",
+            "Performed code reviews, debugging, and performance optimizations",
+            "Deployed releases and supported production monitoring while adhering to NDA terms",
+          ],
+          stack: ["JavaScript", "Node.js", "Vue.js", "React", "SQL"],
+        },
       ],
     };
   },
@@ -199,7 +213,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
   padding-left: 2.6rem;
 }
 
@@ -263,7 +277,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.65rem;
 }
 .exp-meta-left {
   display: flex;
@@ -293,7 +307,7 @@ export default {
 .exp-org {
   color: var(--text-muted);
   font-size: 0.82rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.75rem;
   transition: color 0.35s;
 }
 

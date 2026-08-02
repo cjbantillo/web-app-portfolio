@@ -147,12 +147,12 @@ export default {
 
 <style scoped>
 .hero {
-  min-height: 100vh;
+  min-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem 0 3rem;
+  padding: 4.5rem 0 1.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -278,7 +278,7 @@ export default {
   display: flex;
   gap: 0.85rem;
   flex-wrap: wrap;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero-inner .hero-portrait {
@@ -340,13 +340,13 @@ export default {
   max-width: 1140px;
   height: 1px;
   background: var(--border);
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   transition: background 0.35s;
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: 4rem 0 2.5rem;
+    padding: 3.5rem 0 1.5rem;
   }
   .hero-inner {
     grid-template-columns: 1fr;

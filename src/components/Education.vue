@@ -82,11 +82,11 @@ export default {
           id: 4,
           stage: "College",
           label: "BSIT",
-          period: "2021 – Present",
+          period: "2021 – 2026",
           title: "Bachelor of Science in Information Technology",
           school: "Caraga State University",
           description:
-            "Formally began my programming journey with C and have continued expanding my skills in software development, web technologies, and problem-solving.",
+            "Formally began my programming journey with C and have continued expanding my skills in software development, web technologies, and problem-solving. Graduated June 19, 2026.",
           topics: ["C Programming", "Software Development", "Web Technologies"],
         },
       ],
@@ -123,7 +123,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.7rem;
+  gap: 1.15rem;
   padding-left: 2.6rem;
 }
 

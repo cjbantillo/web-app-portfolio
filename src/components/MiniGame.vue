@@ -218,8 +218,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -3rem; /* Negative margin to overlap Hero */
-  margin-bottom: 2rem;
+  margin-top: -1.5rem; /* Negative margin to overlap Hero */
+  margin-bottom: 0.5rem;
   width: 100%;
   position: relative;
   z-index: 10;

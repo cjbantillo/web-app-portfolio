@@ -8,9 +8,10 @@
       <div class="about-grid">
         <div class="about-text">
           <p>
-            I am a passionate Bachelor of Science in Information Technology
-            student at Caraga State University, driven by continuous learning
-            and building real-world systems that make an impact.
+            I graduated with a Bachelor of Science in Information Technology
+            from Caraga State University on June 19, 2026, and I'm driven by
+            continuous learning and building real-world systems that make an
+            impact.
           </p>
           <p>
             My journey spans <strong>frontend development</strong>,
@@ -48,7 +49,7 @@ export default {
         {
           icon: "fas fa-rocket",
           title: "Startup Founder",
-          desc: "Founded & led Care Guardian — an AI-powered eldercare monitoring startup, achieving 2nd Runner-Up at the DICT Caraga Regional Pitching Competition.",
+          desc: "Founded & led Care Guardian — an AI-powered eldercare monitoring startup, achieving 2nd Runner-Up at the DICT Caraga Regional Pitching Competition & graduating from NavigatU TBI Cohort 9.",
         },
         {
           icon: "fas fa-code",
@@ -88,7 +89,7 @@ export default {
 .about-highlights {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.15rem;
 }
 
 .highlight-item {
@@ -129,7 +130,7 @@ export default {
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 2.2rem;
+    gap: 1.5rem;
   }
 }
 </style>

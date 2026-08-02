@@ -69,6 +69,10 @@ const certFiles = {
     "../assets/Certificates/Christian James Bantillo - Intro to Deep Learning.png",
     import.meta.url,
   ).href,
+  navigatuCompletion: new URL(
+    "../assets/Certificates/navigatu-completion-cert.jpg",
+    import.meta.url,
+  ).href,
 };
 
 export default {
@@ -210,6 +214,17 @@ export default {
           description:
             "AI-assisted agile development and startup fundamentals.",
         },
+        {
+          id: 13,
+          title: "Navigatu TBI Incubation — Cohort 9",
+          issuer: "CSU Technology Business Incubator",
+          category: "Entrepreneurship",
+          date: "July 2026",
+          icon: "fas fa-rocket",
+          file: certFiles.navigatuCompletion,
+          description:
+            "Successfully completed the structured incubation program for Care Guardian startup commercialization.",
+        },
       ],
     };
   },
@@ -229,7 +244,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.35rem;
 }
 
 .cert-filter-btn {
@@ -259,7 +274,7 @@ export default {
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 1.4rem;
+  gap: 1.15rem;
 }
 
 .cert-card {

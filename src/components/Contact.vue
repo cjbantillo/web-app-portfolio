@@ -84,7 +84,7 @@ export default {
   color: var(--text-secondary);
   font-size: 0.95rem;
   max-width: 520px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.35rem;
   margin-left: auto;
   margin-right: auto;
   transition: color 0.35s;
@@ -94,7 +94,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   justify-items: center;
 }
 

@@ -1,26 +1,7 @@
 <template>
   <section class="hero">
     <div class="hero-background">
-      <Squares
-        v-if="!isLight"
-        class="squares-dark"
-        direction="diagonal"
-        :speed="0.2"
-        :squareSize="40"
-        borderColor="rgba(255, 255, 255, 0.08)"
-        hoverFillColor="rgba(255, 255, 255, 0.12)"
-        :noGradient="true"
-      />
-      <Squares
-        v-if="isLight"
-        class="squares-light"
-        direction="diagonal"
-        :speed="0.2"
-        :squareSize="40"
-        borderColor="rgba(0, 0, 0, 0.15)"
-        hoverFillColor="rgba(0, 0, 0, 0.08)"
-        :noGradient="true"
-      />
+      <img src="/src/assets/_DSC7428.JPG" alt="Hero Background" class="hero-bg-image" />
     </div>
     <div class="container hero-inner">
       <div class="hero-content">
@@ -75,13 +56,8 @@
 </template>
 
 <script>
-import Squares from "./Squares.vue";
-
 export default {
   name: "Hero",
-  components: {
-    Squares,
-  },
   props: {
     isLight: {
       type: Boolean,
@@ -150,9 +126,9 @@ export default {
   min-height: 88vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding: 4.5rem 0 1.5rem;
+  padding: 4.5rem 0 4rem;
   position: relative;
   overflow: hidden;
 }
@@ -167,12 +143,16 @@ export default {
   opacity: 0.8;
 }
 
-.squares-dark {
-  display: block;
-}
-
-.squares-light {
-  display: none;
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .hero-inner {
@@ -374,18 +354,5 @@ export default {
     flex-direction: column;
     gap: 1rem;
   }
-}
-</style>
-
-<style>
-/* Unscoped styles for theme-based square visibility */
-.app.light .squares-dark,
-:root.light .squares-dark {
-  display: none !important;
-}
-
-.app.light .squares-light,
-:root.light .squares-light {
-  display: block !important;
 }
 </style>

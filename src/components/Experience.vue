@@ -95,6 +95,19 @@ export default {
     return {
       experiences: [
         {
+          id: 6,
+          role: "Full Time Lecturer",
+          date: "Aug 2026 – Present",
+          title: "ITE Subjects Lecturer",
+          org: "Caraga State University (CSU)",
+          contributions: [
+            "Handling Computer Programming Logic and Design (ITE 111)",
+            "Handling Fundamentals of Programming (ITE 12)",
+            "Handling Fundamental Computational Techniques for ITE",
+          ],
+          stack: ["Programming Logic", "Curriculum Delivery"],
+        },
+        {
           id: 1,
           role: "Frontend Developer Intern",
           date: "2024 – 2025",
@@ -132,7 +145,7 @@ export default {
         {
           id: 2,
           role: "CEO & Co-Founder",
-          date: "2024 – Present",
+          date: "2024 – July 2026",
           title: "Care Guardian",
           org: "AI-Powered Eldercare Monitoring Startup",
           contributions: [

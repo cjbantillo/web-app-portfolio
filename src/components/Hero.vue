@@ -10,7 +10,7 @@
         <!-- Text Card -->
         <div class="text-card anim-fade-up">
           <p class="hero-eyebrow">
-            Software Developer & Lecturer
+            <span class="typewriter-text">{{ currentTitle }}</span><span class="cursor">|</span>
           </p>
           <h1 class="hero-name">
             Christian James Bantillo
@@ -43,6 +43,51 @@ export default {
     }
   },
   emits: ['open-modal'],
+  data() {
+    return {
+      titles: [
+        "Software Developer",
+        "IT Lecturer",
+        "Frontend Developer",
+        "Tech Ethusiast",
+        "Learning by doing"
+      ],
+      currentTitle: "",
+      titleIndex: 0,
+      charIndex: 0,
+      isDeleting: false,
+    };
+  },
+  mounted() {
+    this.typeEffect();
+  },
+  methods: {
+    typeEffect() {
+      const currentFullTitle = this.titles[this.titleIndex];
+      let typeSpeed = 80; // base typing speed
+
+      if (this.isDeleting) {
+        this.currentTitle = currentFullTitle.substring(0, this.charIndex - 1);
+        this.charIndex--;
+        typeSpeed = 40; // faster deletion
+      } else {
+        this.currentTitle = currentFullTitle.substring(0, this.charIndex + 1);
+        this.charIndex++;
+      }
+
+      // If word is complete
+      if (!this.isDeleting && this.charIndex === currentFullTitle.length) {
+        typeSpeed = 2000; // Pause at the end
+        this.isDeleting = true;
+      } else if (this.isDeleting && this.charIndex === 0) {
+        this.isDeleting = false;
+        this.titleIndex = (this.titleIndex + 1) % this.titles.length;
+        typeSpeed = 500; // Pause before typing new word
+      }
+
+      setTimeout(() => this.typeEffect(), typeSpeed);
+    }
+  }
 };
 </script>
 
@@ -133,11 +178,26 @@ export default {
 }
 
 .hero-eyebrow {
-  font-family: "Inter", sans-serif;
+  font-family: "Fira Code", monospace;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #FFFFFF;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  min-height: 1.6rem;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 800;
+  color: #FFFFFF;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-name {

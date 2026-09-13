@@ -4,25 +4,35 @@
       <h2 class="section-title">Let's Connect</h2>
       <div class="section-divider"></div>
 
-      <p class="contact-intro">
-        I'm always interested in hearing about new projects and opportunities.
-        Feel free to reach out.
-      </p>
+      <div class="contact-layout">
+        <div class="contact-left">
+          <p class="contact-intro">
+            I'm always interested in hearing about new projects and opportunities.
+            Feel free to reach out.
+          </p>
 
-      <div class="contact-grid">
-        <a
-          v-for="m in contactMethods"
-          :key="m.label"
-          :href="m.href"
-          :target="m.target || '_self'"
-          class="card contact-card"
-        >
-          <div class="contact-icon-wrap"><i :class="m.icon"></i></div>
-          <div class="contact-info">
-            <h4>{{ m.label }}</h4>
-            <p>{{ m.value }}</p>
+          <div class="contact-grid">
+            <a
+              v-for="m in contactMethods"
+              :key="m.label"
+              :href="m.href"
+              :target="m.target || '_self'"
+              class="contact-link"
+            >
+              <GlowCard class="contact-card card">
+                <div class="contact-icon-wrap"><i :class="m.icon"></i></div>
+                <div class="contact-info">
+                  <h4>{{ m.label }}</h4>
+                  <p>{{ m.value }}</p>
+                </div>
+              </GlowCard>
+            </a>
           </div>
-        </a>
+        </div>
+
+        <div class="contact-right">
+          <img src="../assets/3d-man-sitting-with-laptop.png" alt="3D Man sitting with laptop" class="contact-image" />
+        </div>
       </div>
   </div>
 </template>
@@ -30,6 +40,9 @@
 <script>
 export default {
   name: "Contact",
+  components: {
+    GlowCard: () => import("./GlowCard.vue"),
+  },
   data() {
     return {
       contactMethods: [
@@ -72,35 +85,73 @@ export default {
   },
 };
 </script>
-
 <style scoped>
+
+.contact-content {
+  margin-top: -5rem; /* Shift only this specific modal up to counteract the global 7rem padding */
+}
+
 .contact-section {
   text-align: center;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.contact-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-image {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
 .contact-intro {
   color: var(--text-secondary);
   font-size: 0.95rem;
-  max-width: 520px;
-  margin-bottom: 1.35rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: none;
+  margin-bottom: 2rem;
   transition: color 0.35s;
 }
 
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
-  justify-items: center;
+}
+
+.contact-link {
+  text-decoration: none;
+  display: block;
 }
 
 .contact-card {
   display: flex;
   align-items: center;
   gap: 1rem;
-  text-decoration: none;
   padding: 1.1rem 1.25rem;
   opacity: 1;
   width: 100%;
@@ -140,6 +191,13 @@ export default {
   color: var(--text-muted);
   margin: 0;
   transition: color 0.35s;
+}
+
+@media (max-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 768px) {

@@ -6,69 +6,43 @@
       <div class="orb orb-3"></div>
     </div>
 
+    <!-- Global Logo acts as Home/Close -->
+    <a href="#" class="global-logo" :class="{ 'fade-out': modalScrollTop > 50 }" @click.prevent="activeModal = null" v-show="activeModal !== 'contact'">
+      {{ activeModal ? activeModal.charAt(0).toUpperCase() + activeModal.slice(1) : '{CJB}' }}
+    </a>
+
     <!-- Main Full-Screen Hero View -->
     <Hero :isModalOpen="activeModal !== null" @open-modal="activeModal = $event" />
 
-    <!-- Global Modal Navbar (Only visible when a modal is open) -->
-    <Transition name="fade">
-      <header class="modal-navbar" v-if="activeModal !== null">
-        <a href="#" class="nav-brand" @click.prevent="activeModal = null">{CJB}</a>
-        <nav class="nav-menu">
-          <a href="#" :class="{ active: activeModal === 'about' }" @click.prevent="activeModal = 'about'">About</a>
-          <a href="#" :class="{ active: activeModal === 'education' }" @click.prevent="activeModal = 'education'">Education</a>
-          <a href="#" :class="{ active: activeModal === 'experience' }" @click.prevent="activeModal = 'experience'">Experience</a>
-          <a href="#" :class="{ active: activeModal === 'projects' }" @click.prevent="activeModal = 'projects'">Projects</a>
-          <a href="#" :class="{ active: activeModal === 'skills' }" @click.prevent="activeModal = 'skills'">Skills</a>
-          <a href="#" :class="{ active: activeModal === 'certificates' }" @click.prevent="activeModal = 'certificates'">Certificates</a>
-          <a href="#" class="hire-me" :class="{ active: activeModal === 'contact' }" @click.prevent="activeModal = 'contact'">Contact!</a>
-        </nav>
-        <div class="nav-social">
-          <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-      </header>
-    </Transition>
+
 
     <!-- Section Modals -->
     <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'about'" title="About" @close="activeModal = null">
+      <ModalWrapper v-if="activeModal === 'about'" title="About" @close="activeModal = null" @scroll="modalScrollTop = $event">
         <About />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'education'" title="Education" @close="activeModal = null">
-        <Education />
+      <ModalWrapper v-if="activeModal === 'resume'" title="Resume" @close="activeModal = null" @scroll="modalScrollTop = $event">
+        <Resume @open-image-modal="openImageModal" />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'experience'" title="Experience" @close="activeModal = null">
-        <Experience @open-image-modal="openImageModal" />
-      </ModalWrapper>
-    </Transition>
-
-    <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'projects'" title="Projects" @close="activeModal = null">
+      <ModalWrapper v-if="activeModal === 'projects'" title="Projects" @close="activeModal = null" @scroll="modalScrollTop = $event">
         <Projects />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'skills'" title="Skills" @close="activeModal = null">
-        <Skills />
+      <ModalWrapper v-if="activeModal === 'expertise'" @close="activeModal = null" @scroll="modalScrollTop = $event">
+        <Expertise @open-cert-modal="openCertModal" />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'certificates'" title="Certificate" @close="activeModal = null">
-        <Certifications @open-cert-modal="openCertModal" />
-      </ModalWrapper>
-    </Transition>
-
-    <Transition name="fade">
-      <ModalWrapper v-if="activeModal === 'contact'" title="Contact" @close="activeModal = null">
+      <ModalWrapper v-if="activeModal === 'contact'"  @close="activeModal = null" @scroll="modalScrollTop = $event">
         <Contact />
       </ModalWrapper>
     </Transition>
@@ -93,11 +67,9 @@
 <script>
 import Hero from "./components/Hero.vue";
 import About from "./components/About.vue";
-import Education from "./components/Education.vue";
-import Experience from "./components/Experience.vue";
+import Resume from "./components/Resume.vue";
 import Projects from "./components/Projects.vue";
-import Skills from "./components/Skills.vue";
-import Certifications from "./components/Certifications.vue";
+import Expertise from "./components/Expertise.vue";
 import Contact from "./components/Contact.vue";
 import ImageModal from "./components/ImageModal.vue";
 import CertificateModal from "./components/CertificateModal.vue";
@@ -109,11 +81,9 @@ export default {
   components: {
     Hero,
     About,
-    Education,
-    Experience,
+    Resume,
     Projects,
-    Skills,
-    Certifications,
+    Expertise,
     Contact,
     ImageModal,
     CertificateModal,
@@ -123,18 +93,22 @@ export default {
   data() {
     return {
       activeModal: null,
-      imageModal: {
-        show: false,
-        src: "",
-        alt: "",
-      },
+      modalScrollTop: 0,
+      imageModal: { show: false, src: "", alt: "" },
       certModal: {
         show: false,
         src: "",
         title: "",
-        type: "image",
+        issuer: "",
+        date: "",
+        description: "",
       },
     };
+  },
+  watch: {
+    activeModal() {
+      this.modalScrollTop = 0; // Reset scroll tracking when modal changes
+    }
   },
 
   methods: {
@@ -242,113 +216,30 @@ export default {
   }
 }
 
-/* Modal Navbar (Visible only when modal is open) */
-.modal-navbar {
+/* Global Logo */
+.global-logo {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 4rem;
-  z-index: 1001; /* Sit above modal overlay (1000) */
-}
-
-.modal-navbar .nav-brand {
+  top: 2.5rem;
+  left: 3rem;
   font-family: "Inter", sans-serif;
+  font-weight: 800;
   font-size: 2rem;
-  font-weight: 700;
   color: #FFFFFF;
   text-decoration: none;
+  letter-spacing: -1px;
+  z-index: 10000;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s;
 }
 
-.modal-navbar .nav-menu {
-  display: flex;
-  gap: 2.2rem;
-  align-items: center;
+.global-logo.fade-out {
+  opacity: 0;
+  transform: translateY(-15px);
+  pointer-events: none;
 }
 
-.modal-navbar .nav-menu a {
-  font-family: "Inter", sans-serif;
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #E2E8F0;
-  text-decoration: none;
-  position: relative;
-  padding-bottom: 0.35rem;
-  transition: color 0.3s ease;
-}
-
-.modal-navbar .nav-menu a:hover,
-.modal-navbar .nav-menu a.active {
-  color: #FFFFFF;
-}
-
-/* Green underline on hover and active */
-.modal-navbar .nav-menu a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: #00ff88;
-  transition: width 0.3s ease;
-}
-
-.modal-navbar .nav-menu a:hover::after,
-.modal-navbar .nav-menu a.active::after {
-  width: 100%;
-}
-
-.modal-navbar .nav-menu .hire-me {
-  color: #00ff88;
-  font-weight: 600;
-}
-
-.modal-navbar .nav-menu .hire-me:hover,
-.modal-navbar .nav-menu .hire-me.active {
-  color: #33ff99;
-}
-
-.modal-navbar .nav-menu .hire-me::after {
-  display: none; /* No underline for the highlight button */
-}
-
-.modal-navbar .nav-social {
-  display: flex;
-  gap: 0.8rem;
-}
-
-.modal-navbar .nav-social a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.modal-navbar .nav-social a:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .modal-navbar {
-    padding: 1.5rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .modal-navbar .nav-social {
-    display: none;
-  }
+.global-logo:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
 }
 
 /* Image Modal */

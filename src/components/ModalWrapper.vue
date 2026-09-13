@@ -1,9 +1,8 @@
 <template>
   <div class="modal-overlay" @click.self="closeModal">
     <div class="modal-layout">
-      <h2 class="modal-header-title" v-if="title">{{ title }}</h2>
       <div class="modal-container is-visible">
-        <div class="modal-content">
+        <div class="modal-content" @scroll="handleScroll">
           <slot></slot>
         </div>
       </div>
@@ -23,6 +22,9 @@ export default {
   methods: {
     closeModal() {
       this.$emit("close");
+    },
+    handleScroll(e) {
+      this.$emit("scroll", e.target.scrollTop);
     },
     handleKeydown(e) {
       if (e.key === "Escape") {
@@ -60,19 +62,9 @@ export default {
 .modal-layout {
   display: flex;
   flex-direction: column;
-  width: 100vw; /* Massive width */
-  max-width: 1400px;
-  height: 90vh; /* Massive height */
-}
-
-.modal-header-title {
-  font-family: "Inter", sans-serif;
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin-bottom: 1rem;
-  padding-left: 0;
-  text-align: left;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
 }
 
 .modal-container {
@@ -117,7 +109,7 @@ export default {
 
 .modal-content {
   overflow-y: auto;
-  padding: 2rem 3rem; /* Reduced top/bottom padding to ensure text fits without overflowing */
+  padding: 7rem 3rem 4rem; /* Increased top padding to give the dynamic top-left heading breathing space */
   flex: 1;
   
   /* Completely hide scrollbar */

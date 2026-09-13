@@ -5,8 +5,6 @@
       <div class="hero-overlay"></div>
     </div>
     
-    <div class="logo" v-show="!isModalOpen">{CJB}</div>
-
     <div class="container hero-inner" v-show="!isModalOpen">
       <div class="right-content">
         <!-- Text Card -->
@@ -18,23 +16,17 @@
             Christian James Bantillo
           </h1>
           <p class="hero-desc">
-            Building elegant digital solutions with cutting-edge technology and creative problem-solving. Currently graduating BSIT at Caraga State University.
+            Building elegant digital solutions with cutting-edge technology and creative problem-solving. I am a recent graduate of BSIT at Caraga State University, passionate about creating seamless and efficient web applications.
           </p>
         </div>
         
-        <!-- Navigation Pill 1 -->
+        <!-- Global Navigation Pill -->
         <div class="nav-pill anim-fade-up anim-delay-1">
           <button class="nav-btn" @click="$emit('open-modal', 'about')">About</button>
-          <button class="nav-btn" @click="$emit('open-modal', 'education')">Education</button>
-          <button class="nav-btn" @click="$emit('open-modal', 'experience')">Experience</button>
-          <button class="nav-btn" @click="$emit('open-modal', 'contact')">Contact</button>
-        </div>
-
-        <!-- Navigation Pill 2 -->
-        <div class="nav-pill anim-fade-up anim-delay-2">
+          <button class="nav-btn" @click="$emit('open-modal', 'resume')">Resume</button>
           <button class="nav-btn" @click="$emit('open-modal', 'projects')">Projects</button>
-          <button class="nav-btn" @click="$emit('open-modal', 'skills')">Skills</button>
-          <button class="nav-btn" @click="$emit('open-modal', 'certificates')">Certificate</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'expertise')">Expertise</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'contact')">Contact</button>
         </div>
       </div>
     </div>

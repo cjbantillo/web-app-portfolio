@@ -1,6 +1,5 @@
 <template>
-  <section id="projects" class="section">
-    <div class="container">
+  <div class="projects-content">
       <p class="section-label"><i class="fas fa-folder-open"></i> Projects</p>
       <h2 class="section-title">Featured Projects</h2>
       <div class="section-divider"></div>
@@ -15,8 +14,7 @@
           </div>
         </GlowCard>
       </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>

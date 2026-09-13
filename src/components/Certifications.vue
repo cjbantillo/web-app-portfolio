@@ -1,6 +1,5 @@
 <template>
-  <section id="certifications" class="section">
-    <div class="container">
+  <div class="certifications-content">
       <p class="section-label">
         <i class="fas fa-certificate"></i> Certifications
       </p>
@@ -43,8 +42,7 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>

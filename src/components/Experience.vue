@@ -1,62 +1,60 @@
 <template>
-  <section id="experience" class="section">
-    <div class="container">
-      <p class="section-label"><i class="fas fa-briefcase"></i> Experience</p>
-      <h2 class="section-title">Work & Leadership</h2>
-      <div class="section-divider"></div>
+  <div class="experience-content">
+    <p class="section-label"><i class="fas fa-briefcase"></i> Experience</p>
+    <h2 class="section-title">Work & Leadership</h2>
+    <div class="section-divider"></div>
 
-      <div class="experience-timeline">
-        <div class="timeline-rail" aria-hidden="true"></div>
+    <div class="experience-timeline">
+      <div class="timeline-rail" aria-hidden="true"></div>
 
-        <article class="timeline-item" v-for="exp in experiences" :key="exp.id">
-          <div class="timeline-node" aria-hidden="true"></div>
+      <article class="timeline-item" v-for="exp in experiences" :key="exp.id">
+        <div class="timeline-node" aria-hidden="true"></div>
 
-          <div class="timeline-card exp-card">
-            <div class="exp-meta">
-              <div class="exp-meta-left">
-                <span class="exp-role-badge badge">{{ exp.role }}</span>
-                <span class="exp-date"
-                  ><i class="fas fa-calendar-alt"></i> {{ exp.date }}</span
-                >
-              </div>
-            </div>
-
-            <h3 class="exp-title">{{ exp.title }}</h3>
-            <p class="exp-org">{{ exp.org }}</p>
-
-            <ul class="exp-list">
-              <li v-for="(c, i) in exp.contributions" :key="i">
-                <i class="fas fa-check"></i>
-                <span>{{ c }}</span>
-              </li>
-            </ul>
-
-            <div v-if="exp.achievement" class="exp-achievement">
-              <i class="fas fa-trophy"></i>
-              <span>{{ exp.achievement }}</span>
-            </div>
-
-            <div class="exp-stack">
-              <span class="badge" v-for="t in exp.stack" :key="t">{{ t }}</span>
-            </div>
-
-            <div v-if="exp.gallery && exp.gallery.length" class="exp-gallery">
-              <div class="gallery-grid">
-                <img
-                  v-for="(img, idx) in exp.gallery"
-                  :key="idx"
-                  :src="img.src"
-                  :alt="img.alt"
-                  class="gallery-img"
-                  @click="$emit('open-image-modal', img.src, img.alt)"
-                />
-              </div>
+        <div class="timeline-card exp-card">
+          <div class="exp-meta">
+            <div class="exp-meta-left">
+              <span class="exp-role-badge badge">{{ exp.role }}</span>
+              <span class="exp-date"
+                ><i class="fas fa-calendar-alt"></i> {{ exp.date }}</span
+              >
             </div>
           </div>
-        </article>
-      </div>
+
+          <h3 class="exp-title">{{ exp.title }}</h3>
+          <p class="exp-org">{{ exp.org }}</p>
+
+          <ul class="exp-list">
+            <li v-for="(c, i) in exp.contributions" :key="i">
+              <i class="fas fa-check"></i>
+              <span>{{ c }}</span>
+            </li>
+          </ul>
+
+          <div v-if="exp.achievement" class="exp-achievement">
+            <i class="fas fa-trophy"></i>
+            <span>{{ exp.achievement }}</span>
+          </div>
+
+          <div class="exp-stack">
+            <span class="badge" v-for="t in exp.stack" :key="t">{{ t }}</span>
+          </div>
+
+          <div v-if="exp.gallery && exp.gallery.length" class="exp-gallery">
+            <div class="gallery-grid">
+              <img
+                v-for="(img, idx) in exp.gallery"
+                :key="idx"
+                :src="img.src"
+                :alt="img.alt"
+                class="gallery-img"
+                @click="$emit('open-image-modal', img.src, img.alt)"
+              />
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -226,7 +224,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 3rem;
   padding-left: 2.6rem;
 }
 
@@ -259,10 +257,10 @@ export default {
   border-radius: 50%;
   margin-top: 0.5rem;
   margin-left: 0.6rem;
-  background: #2f80ff;
+  background: #ffffff;
   box-shadow:
-    0 0 0 4px rgba(47, 128, 255, 0.16),
-    0 0 14px rgba(47, 128, 255, 0.5);
+    0 0 0 4px rgba(255, 255, 255, 0.1),
+    0 0 14px rgba(255, 255, 255, 0.2);
 }
 
 .timeline-item:first-of-type .timeline-node {
@@ -298,18 +296,19 @@ export default {
   gap: 1rem;
 }
 .exp-role-badge {
-  background: var(--cta);
-  color: #fff;
-  border-color: var(--cta);
-  font-size: 0.68rem;
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  font-weight: 600;
+  font-size: 0.7rem;
 }
 .exp-date {
-  font-family: "Fira Code", monospace;
-  font-size: 0.72rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
   color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   transition: color 0.35s;
 }
 

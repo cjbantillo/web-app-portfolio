@@ -1,42 +1,38 @@
 <template>
-  <section id="education" class="section education-section">
-    <div class="container">
-      <div>
-        <p class="section-label">
-          <i class="fas fa-graduation-cap"></i> Education
-        </p>
-        <h2 class="section-title">Academic Journey</h2>
-      </div>
-      <div class="section-divider"></div>
-
-      <div class="education-timeline">
-        <div class="timeline-rail" aria-hidden="true"></div>
-
-        <article class="timeline-item" v-for="item in education" :key="item.id">
-          <div class="timeline-node" aria-hidden="true"></div>
-
-          <div class="timeline-year">{{ item.period }}</div>
-
-          <div class="timeline-card card">
-            <div class="timeline-meta">
-              <span class="timeline-stage">{{ item.stage }}</span>
-              <span class="timeline-label">{{ item.label }}</span>
-            </div>
-
-            <h3 class="timeline-title">{{ item.title }}</h3>
-            <p class="timeline-school">{{ item.school }}</p>
-            <p class="timeline-desc">{{ item.description }}</p>
-
-            <div class="timeline-tags">
-              <span class="badge" v-for="topic in item.topics" :key="topic">
-                {{ topic }}
-              </span>
-            </div>
-          </div>
-        </article>
-      </div>
+  <div class="education-content">
+    <div>
+     
+      <h2 class="section-title">Academic Journey</h2>
     </div>
-  </section>
+    <div class="section-divider"></div>
+
+    <div class="education-timeline">
+      <div class="timeline-rail" aria-hidden="true"></div>
+
+      <article class="timeline-item" v-for="item in education" :key="item.id">
+        <div class="timeline-node" aria-hidden="true"></div>
+
+        <div class="timeline-year">{{ item.period }}</div>
+
+        <div class="timeline-card card">
+          <div class="timeline-meta">
+            <span class="timeline-stage">{{ item.stage }}</span>
+            <span class="timeline-label">{{ item.label }}</span>
+          </div>
+
+          <h3 class="timeline-title">{{ item.title }}</h3>
+          <p class="timeline-school">{{ item.school }}</p>
+          <p class="timeline-desc">{{ item.description }}</p>
+
+          <div class="timeline-tags">
+            <span class="badge" v-for="topic in item.topics" :key="topic">
+              {{ topic }}
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -46,26 +42,15 @@ export default {
     return {
       education: [
         {
-          id: 1,
-          stage: "Grade 9",
-          label: "ALS",
-          period: "2018",
-          title: "Computer Systems Servicing",
-          school: "Agusan National High School",
+          id: 4,
+          stage: "College",
+          label: "BSIT",
+          period: "2021 – 2026",
+          title: "Bachelor of Science in Information Technology",
+          school: "Caraga State University",
           description:
-            "Built foundational knowledge in computer hardware, troubleshooting, and system maintenance.",
-          topics: ["Hardware", "Troubleshooting", "System Maintenance"],
-        },
-        {
-          id: 2,
-          stage: "Grade 10",
-          label: "ALS",
-          period: "2019",
-          title: "Basic Electronics",
-          school: "Agusan National High School",
-          description:
-            "Expanded my technical background through the study of electronic components, circuits, and related technologies.",
-          topics: ["Electronics", "Circuits", "Components"],
+            "Formally began my programming journey with C and have continued expanding my skills in software development, web technologies, and problem-solving. Graduated June 19, 2026.",
+          topics: ["C Programming", "Software Development", "Web Technologies"],
         },
         {
           id: 3,
@@ -79,15 +64,26 @@ export default {
           topics: ["STEM", "Graphic Design", "HTML", "CSS", "JavaScript"],
         },
         {
-          id: 4,
-          stage: "College",
-          label: "BSIT",
-          period: "2021 – 2026",
-          title: "Bachelor of Science in Information Technology",
-          school: "Caraga State University",
+          id: 2,
+          stage: "Grade 10",
+          label: "ALS",
+          period: "2019",
+          title: "Basic Electronics",
+          school: "Agusan National High School",
           description:
-            "Formally began my programming journey with C and have continued expanding my skills in software development, web technologies, and problem-solving. Graduated June 19, 2026.",
-          topics: ["C Programming", "Software Development", "Web Technologies"],
+            "Expanded my technical background through the study of electronic components, circuits, and related technologies.",
+          topics: ["Electronics", "Circuits", "Components"],
+        },
+        {
+          id: 1,
+          stage: "Grade 9",
+          label: "ALS",
+          period: "2018",
+          title: "Computer Systems Servicing",
+          school: "Agusan National High School",
+          description:
+            "Built foundational knowledge in computer hardware, troubleshooting, and system maintenance.",
+          topics: ["Hardware", "Troubleshooting", "System Maintenance"],
         },
       ],
     };

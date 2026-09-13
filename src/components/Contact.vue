@@ -1,6 +1,5 @@
 <template>
-  <section id="contact" class="section contact-section">
-    <div class="container">
+  <div class="contact-content">
       <p class="section-label"><i class="fas fa-paper-plane"></i> Contact</p>
       <h2 class="section-title">Let's Connect</h2>
       <div class="section-divider"></div>
@@ -25,8 +24,7 @@
           </div>
         </a>
       </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>

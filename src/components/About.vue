@@ -1,136 +1,80 @@
 <template>
-  <section id="about" class="section about-section">
-    <div class="container">
-      <p class="section-label"><i class="fas fa-user"></i> About</p>
-      <h2 class="section-title">About Me</h2>
-      <div class="section-divider"></div>
-
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            I graduated with a Bachelor of Science in Information Technology
-            from Caraga State University on June 19, 2026, and I'm driven by
-            continuous learning and building real-world systems that make an
-            impact.
-          </p>
-          <p>
-            My journey spans <strong>frontend development</strong>,
-            <strong>full-stack systems</strong>, and
-            <strong>entrepreneurship</strong>. I thrive on rapid prototyping,
-            leveraging AI tools effectively, and collaborating with talented
-            teams under tight deadlines.
-          </p>
-        </div>
-
-        <div class="about-highlights">
-          <div
-            class="highlight-item"
-            v-for="h in aboutHighlights"
-            :key="h.title"
-          >
-            <div class="highlight-icon"><i :class="h.icon"></i></div>
-            <div>
-              <h4 class="highlight-title">{{ h.title }}</h4>
-              <p class="highlight-desc">{{ h.desc }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="about-content">
+    <div class="about-text">
+      <!-- Image floated right inside the text container -->
+      <img src="/src/assets/img/IMG_0436.jpg" alt="Christian James Bantillo" class="about-avatar" />
+      
+      <p>
+        I am a driven technology professional and educator with a Bachelor of Science in Information Technology from Caraga State University (Class of 2026). Currently serving as a <strong>Lecturer</strong>, I am deeply committed to tech education, where I mentor aspiring developers and share my passion for continuous learning and the architecture of real-world systems.
+      </p>
+      <p>
+        My technical expertise spans modern <strong>frontend development</strong> and scalable <strong>full-stack engineering</strong>. I thrive in dynamic environments that require rapid prototyping, the strategic integration of AI tools, and seamless collaboration with talented cross-functional teams to deliver impactful solutions under tight deadlines.
+      </p>
+      <p>
+        My journey is deeply rooted in an entrepreneurial mindset. Previously, I founded <strong>Care Guardian</strong>, an AI-powered eldercare monitoring startup. Leading this venture, I successfully guided our team to secure 2nd Runner-Up at the highly competitive DICT Caraga Regional Pitching Competition and proudly graduated from the NavigatU TBI Cohort 9 accelerator program.
+      </p>
+      <p>
+        Whether I am in the classroom breaking down complex software paradigms, or in the editor architecting elegant digital solutions, my core mission remains the same: to leverage technology to solve meaningful problems and empower others to do the same.
+      </p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: "About",
-  data() {
-    return {
-      aboutHighlights: [
-        {
-          icon: "fas fa-rocket",
-          title: "Startup Founder",
-          desc: "Founded & led Care Guardian — an AI-powered eldercare monitoring startup, achieving 2nd Runner-Up at the DICT Caraga Regional Pitching Competition & graduating from NavigatU TBI Cohort 9.",
-        },
-        {
-          icon: "fas fa-code",
-          title: "Internship",
-          desc: "Frontend Developer Intern at Caraga State University, contributing to an internal React-based web system for curriculum digitization.",
-        },
-        {
-          icon: "fas fa-film",
-          title: "Creative Production",
-          desc: "Freelance graphic design and video editing for digital marketing at Elite Royalties and i-Singapore.",
-        },
-      ],
-    };
-  },
 };
 </script>
 
 <style scoped>
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
+.about-content {
+  width: 100%;
+}
+
+.about-text {
+  /* Removed max-width to allow text to fill the massive glass card */
+  width: 100%;
+}
+
+.about-avatar {
+  float: right;
+  width: 220px; /* Made slightly larger again to match the huge modal */
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-left: 3rem;
+  margin-bottom: 2rem;
 }
 
 .about-text p {
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  font-size: 0.98rem;
+  color: #E2E8F0;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem; /* Increased size to comfortably fill the large layout */
+  line-height: 1.6;
+  font-family: "Inter", sans-serif;
+  text-align: justify; /* Forces text to fit perfectly into a rectangle shape */
   transition: color 0.35s;
 }
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
 .about-text strong {
-  color: var(--text-primary);
-  transition: color 0.35s;
-}
-
-.about-highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
-}
-
-.highlight-item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-.highlight-icon {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: var(--accent-dim);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
-  font-size: 0.95rem;
-  transition:
-    background 0.35s,
-    border-color 0.35s,
-    color 0.35s;
-}
-.highlight-title {
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-  transition: color 0.35s;
-}
-.highlight-desc {
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  color: #FFFFFF;
+  font-weight: 700; /* Bold for emphasis, not 900 */
   transition: color 0.35s;
 }
 
 @media (max-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .about-avatar {
+    float: none;
+    display: block;
+    margin: 0 auto 2rem auto;
+  }
+  .about-text {
+    text-align: left;
   }
 }
 </style>

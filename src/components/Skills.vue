@@ -1,6 +1,5 @@
 <template>
-  <section id="skills" class="section">
-    <div class="container">
+  <div class="skills-content">
       <p class="section-label"><i class="fas fa-code"></i> Skills</p>
       <h2 class="section-title">Technical Skills</h2>
       <div class="section-divider"></div>
@@ -20,8 +19,7 @@
           </div>
         </GlowCard>
       </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>

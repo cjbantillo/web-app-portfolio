@@ -17,15 +17,8 @@
         </li>
       </ul>
 
-      <!-- Right controls: theme toggle + hamburger -->
+      <!-- Right controls: hamburger -->
       <div class="nav-controls">
-        <button
-          class="theme-toggle"
-          @click="$emit('toggle-theme')"
-          :aria-label="isLight ? 'Switch to dark mode' : 'Switch to light mode'"
-        >
-          <i :class="isLight ? 'fas fa-moon' : 'fas fa-sun'"></i>
-        </button>
         <button
           class="hamburger"
           :class="{ open: mobileOpen }"
@@ -42,12 +35,6 @@
 <script>
 export default {
   name: "Navbar",
-  props: {
-    isLight: {
-      type: Boolean,
-      required: true,
-    },
-  },
   data() {
     return {
       mobileOpen: false,
@@ -137,29 +124,6 @@ export default {
   gap: 0.9rem;
 }
 
-.theme-toggle {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  transition:
-    border-color 0.25s,
-    color 0.25s,
-    background 0.25s;
-  padding: 0;
-}
-.theme-toggle:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-  background: var(--accent-dim);
-}
 
 .hamburger {
   display: none;

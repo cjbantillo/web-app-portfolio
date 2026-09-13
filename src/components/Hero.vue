@@ -1,57 +1,43 @@
 <template>
-  <section class="hero">
+  <section class="hero is-visible">
     <div class="hero-background">
       <img src="/src/assets/_DSC7428.JPG" alt="Hero Background" class="hero-bg-image" />
+      <div class="hero-overlay"></div>
     </div>
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <p class="hero-eyebrow anim-fade-up">
-          Software Developer & Entrepreneur
-        </p>
-        <h1 class="hero-name anim-fade-up anim-delay-1">
-          Christian James<br />M. Bantillo
-        </h1>
-        <p class="hero-sub anim-fade-up anim-delay-2">
-          <span class="typed-text">{{ typeValue }}</span>
-          <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
-        </p>
-        <p class="hero-desc anim-fade-up anim-delay-3">
-          Building elegant digital solutions with cutting-edge technology and
-          creative problem-solving. Currently graduating BSIT at Caraga State
-          University.
-        </p>
-        <div class="hero-actions anim-fade-up anim-delay-4">
-          <a href="#contact" class="btn btn-cta"
-            ><i class="fas fa-envelope"></i> Get in Touch</a
-          >
-          <a href="#projects" class="btn btn-outline"
-            ><i class="fas fa-folder-open"></i> View Work</a
-          >
-          <a
-            href="https://the-unit-singularity.netlify.app/"
-            class="btn btn-outline"
-            target="_blank"
-            rel="noopener"
-            ><i class="fas fa-terminal"></i> The Unit Singularity</a
-          >
-        </div>
-      </div>
-      <div class="hero-portrait anim-fade-up anim-delay-2">
-        <img
-          src="/src/assets/img/IMG_0436.jpg"
-          alt="Christian James M. Bantillo"
-        />
-      </div>
+    
+    <div class="logo" v-show="!isModalOpen">{CJB}</div>
 
-      <div class="hero-stats anim-fade-up anim-delay-5">
-        <div class="stat" v-for="s in heroStats" :key="s.label">
-          <span class="stat-value">{{ s.value }}</span>
-          <span class="stat-label">{{ s.label }}</span>
+    <div class="container hero-inner" v-show="!isModalOpen">
+      <div class="right-content">
+        <!-- Text Card -->
+        <div class="text-card anim-fade-up">
+          <p class="hero-eyebrow">
+            Software Developer & Lecturer
+          </p>
+          <h1 class="hero-name">
+            Christian James Bantillo
+          </h1>
+          <p class="hero-desc">
+            Building elegant digital solutions with cutting-edge technology and creative problem-solving. Currently graduating BSIT at Caraga State University.
+          </p>
+        </div>
+        
+        <!-- Navigation Pill 1 -->
+        <div class="nav-pill anim-fade-up anim-delay-1">
+          <button class="nav-btn" @click="$emit('open-modal', 'about')">About</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'education')">Education</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'experience')">Experience</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'contact')">Contact</button>
+        </div>
+
+        <!-- Navigation Pill 2 -->
+        <div class="nav-pill anim-fade-up anim-delay-2">
+          <button class="nav-btn" @click="$emit('open-modal', 'projects')">Projects</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'skills')">Skills</button>
+          <button class="nav-btn" @click="$emit('open-modal', 'certificates')">Certificate</button>
         </div>
       </div>
     </div>
-
-    <div class="hero-bottom-rule"></div>
   </section>
 </template>
 
@@ -59,78 +45,37 @@
 export default {
   name: "Hero",
   props: {
-    isLight: {
+    isModalOpen: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
-    return {
-      typeValue: "",
-      typeStatus: false,
-      displayTextArray: [
-        "Full-Stack Developer",
-        "Creative Problem Solver",
-        "Tech Innovator",
-        "Video Editor & Designer",
-        "Always Upskilling",
-      ],
-      typingSpeed: 100,
-      erasingSpeed: 50,
-      newTextDelay: 2000,
-      displayTextArrayIndex: 0,
-      charIndex: 0,
-      heroStats: [
-        { value: "4+", label: "Years Experience" },
-        { value: "12+", label: "Certifications" },
-        { value: "2nd", label: "Regional Runner-Up" },
-      ],
-    };
-  },
-  created() {
-    setTimeout(this.typeText, this.newTextDelay + 200);
-  },
-  methods: {
-    typeText() {
-      if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
-        if (!this.typeStatus) this.typeStatus = true;
-        this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(this.charIndex);
-        this.charIndex += 1;
-        setTimeout(this.typeText, this.typingSpeed);
-      } else {
-        this.typeStatus = false;
-        setTimeout(this.eraseText, this.newTextDelay);
-      }
-    },
-    eraseText() {
-      if (this.charIndex > 0) {
-        if (!this.typeStatus) this.typeStatus = true;
-        this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(0, this.charIndex - 1);
-        this.charIndex -= 1;
-        setTimeout(this.eraseText, this.erasingSpeed);
-      } else {
-        this.typeStatus = false;
-        this.displayTextArrayIndex += 1;
-        if (this.displayTextArrayIndex >= this.displayTextArray.length) {
-          this.displayTextArrayIndex = 0;
-        }
-        setTimeout(this.typeText, this.typingSpeed + 1000);
-      }
-    },
-  },
+  emits: ['open-modal'],
 };
 </script>
 
 <style scoped>
 .hero {
-  min-height: 88vh;
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 4.5rem 0 4rem;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 1vw;
   position: relative;
   overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  z-index: 10;
 }
 
 .hero-background {
@@ -140,219 +85,129 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 0;
-  opacity: 0.8;
 }
 
 .hero-bg-image {
   position: absolute;
   top: 0;
+  /* Make the image wider than the screen and shift it left */
+  left: -15%;
+  width: 115%;
+  height: 100%;
+  object-fit: cover;
+  /* Center vertically, left horizontally */
+  object-position: right center;
+  z-index: -2;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0.15;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
   z-index: -1;
-  pointer-events: none;
 }
 
 .hero-inner {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3rem;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero-inner > * {
-  pointer-events: auto;
-}
-
-.hero-bottom-rule {
+  display: flex;
+  justify-content: flex-end;
   position: relative;
   z-index: 1;
 }
-.hero-content {
-  pointer-events: none;
-}
 
-.hero-content > * {
-  pointer-events: none;
-}
-
-.hero-content a,
-.hero-content button {
-  pointer-events: auto;
-}
-
-.hero-inner .hero-eyebrow {
-  font-family: "Fira Code", monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  transition: color 0.35s;
-}
-
-.hero-inner .hero-name {
-  margin-bottom: 1.1rem;
-  background: linear-gradient(
-    135deg,
-    var(--text-primary) 0%,
-    var(--text-secondary) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-inner .hero-sub {
-  font-family: "Fira Code", monospace;
-  font-size: 1.15rem;
-  color: var(--accent);
-  margin-bottom: 1.1rem;
-  transition: color 0.35s;
-  display: flex;
-  align-items: center;
-  min-height: 1.5rem;
-}
-
-.hero-sub .cursor {
-  display: inline-block;
-  width: 3px;
-  background-color: var(--accent);
-  animation: blink 1s infinite;
-  margin-left: 0.1rem;
-}
-
-.hero-sub .cursor.typing {
-  animation: none;
-}
-
-@keyframes blink {
-  49% {
-    background-color: var(--accent);
-  }
-  50% {
-    background-color: transparent;
-  }
-  99% {
-    background-color: transparent;
-  }
-}
-
-.hero-inner .hero-desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  max-width: 540px;
-  line-height: 1.75;
-  margin-bottom: 2rem;
-  transition: color 0.35s;
-}
-
-.hero-inner .hero-actions {
-  display: flex;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.hero-inner .hero-portrait {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.hero-inner .hero-portrait img {
-  width: 280px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-  pointer-events: auto;
-}
-
-.hero-inner .hero-portrait img:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--border-hover);
-}
-.hero-stats {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-  pointer-events: none;
-}
-.stat {
+.right-content {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-}
-.stat-value {
-  font-family: "Fira Code", monospace;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  transition: color 0.35s;
-}
-.stat-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  transition: color 0.35s;
+  gap: 1.5rem;
+  max-width: 600px;
 }
 
-.hero-bottom-rule {
-  width: 100%;
-  max-width: 1140px;
-  height: 1px;
-  background: var(--border);
-  margin-top: 1.5rem;
-  transition: background 0.35s;
+/* Glassmorphism Base styling */
+.text-card, .nav-pill {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.text-card {
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.hero-eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.hero-name {
+  font-family: "Inter", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+
+.hero-desc {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  color: #E2E8F0;
+  line-height: 1.5;
+}
+
+.nav-pill {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.2rem 2rem;
+  border-radius: 9999px; /* Pill shape */
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover {
+  color: #E2E8F0;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: 3.5rem 0 1.5rem;
+    align-items: center;
+    padding-right: 0;
   }
   .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    justify-content: center;
+    padding: 0 1.5rem;
   }
-  .hero-portrait img {
-    width: 220px;
-    height: 220px;
+  .right-content {
+    max-width: 100%;
   }
-  .hero-stats {
-    gap: 2rem;
+  .hero-name {
+    font-size: 2rem;
   }
-}
-
-@media (max-width: 480px) {
-  .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .hero-portrait img {
-    width: 200px;
-    height: 200px;
-  }
-  .hero-stats {
-    flex-direction: column;
+  .nav-pill {
+    flex-wrap: wrap;
     gap: 1rem;
+    border-radius: 16px; /* Adjust pill on mobile */
   }
 }
 </style>
+

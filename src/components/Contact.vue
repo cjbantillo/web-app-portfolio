@@ -1,5 +1,10 @@
 <template>
   <div class="contact-content">
+      <!-- Back to Home Button -->
+      <button class="contact-home-btn" @click="$emit('open-modal', null)" aria-label="Go Back Home" title="Return Home">
+        <i class="fas fa-home"></i>
+      </button>
+
       <p class="section-label"><i class="fas fa-paper-plane"></i> Contact</p>
       <h2 class="section-title">Let's Connect</h2>
       <div class="section-divider"></div>
@@ -44,6 +49,7 @@ import GlowCard from "./GlowCard.vue";
 
 export default {
   name: "Contact",
+  emits: ["open-modal"],
   components: {
     GlowCard,
   },
@@ -90,6 +96,39 @@ export default {
 };
 </script>
 <style scoped>
+
+/* Unique Back to Home Button */
+.contact-home-btn {
+  position: fixed;
+  top: 3.5rem;
+  right: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-home-btn i {
+  font-size: 1.2rem;
+}
+
+.contact-home-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.15) translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+}
 
 .contact-content {
   margin-top: -5rem; /* Shift only this specific modal up to counteract the global 7rem padding */

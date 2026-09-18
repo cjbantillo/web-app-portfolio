@@ -9,7 +9,7 @@
     <!-- Global Header acts as Home/Close + Nav -->
     <header class="global-header" :class="{ 'fade-out': modalScrollTop > 50 }" v-show="activeModal !== 'contact'">
       <a href="#" class="global-logo" @click.prevent="activeModal = null">
-        {{ activeModal ? activeModal.charAt(0).toUpperCase() + activeModal.slice(1) : '{CJB}' }}
+        {{ activeModal ? activeModal.charAt(0).toUpperCase() + activeModal.slice(1) : '>_' }}
       </a>
 
       <!-- Global Modal Navigation -->
@@ -37,25 +37,25 @@
 
     <Transition name="fade">
       <ModalWrapper v-if="activeModal === 'resume'" title="Resume" @close="activeModal = null" @scroll="modalScrollTop = $event">
-        <Resume @open-image-modal="openImageModal" />
+        <Resume @open-image-modal="openImageModal" @open-modal="activeModal = $event" />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
       <ModalWrapper v-if="activeModal === 'projects'" title="Projects" @close="activeModal = null" @scroll="modalScrollTop = $event">
-        <Projects />
+        <Projects @open-modal="activeModal = $event" />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
       <ModalWrapper v-if="activeModal === 'expertise'" @close="activeModal = null" @scroll="modalScrollTop = $event">
-        <Expertise @open-cert-modal="openCertModal" />
+        <Expertise @open-cert-modal="openCertModal" @open-modal="activeModal = $event" />
       </ModalWrapper>
     </Transition>
 
     <Transition name="fade">
       <ModalWrapper v-if="activeModal === 'contact'"  @close="activeModal = null" @scroll="modalScrollTop = $event">
-        <Contact />
+        <Contact @open-modal="activeModal = $event" />
       </ModalWrapper>
     </Transition>
 
@@ -235,6 +235,7 @@ export default {
   left: 3rem;
   right: 3rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   z-index: 10000;
   transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -265,9 +266,6 @@ export default {
 
 /* Global Navigation in Modals */
 .global-nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   gap: 2.5rem;
 }

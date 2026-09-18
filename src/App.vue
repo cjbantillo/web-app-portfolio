@@ -15,10 +15,11 @@
       <!-- Global Modal Navigation -->
       <nav class="global-nav" v-show="activeModal">
         <button class="nav-item" @click="activeModal = null">Home</button>
-        <button class="nav-item" @click="activeModal = 'resume'">Resume</button>
-        <button class="nav-item" @click="activeModal = 'projects'">Projects</button>
-        <button class="nav-item" @click="activeModal = 'expertise'">Expertise</button>
-        <button class="nav-item" @click="activeModal = 'contact'">Contacts</button>
+        <button class="nav-item" v-if="activeModal !== 'about'" @click="activeModal = 'about'">About</button>
+        <button class="nav-item" v-if="activeModal !== 'resume'" @click="activeModal = 'resume'">Resume</button>
+        <button class="nav-item" v-if="activeModal !== 'projects'" @click="activeModal = 'projects'">Projects</button>
+        <button class="nav-item" v-if="activeModal !== 'expertise'" @click="activeModal = 'expertise'">Expertise</button>
+        <button class="nav-item" v-if="activeModal !== 'contact'" @click="activeModal = 'contact'">Contacts</button>
       </nav>
     </header>
 

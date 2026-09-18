@@ -109,7 +109,7 @@ export default {
 
 .modal-content {
   overflow-y: auto;
-  padding: 7rem 3rem 4rem; /* Increased top padding to give the dynamic top-left heading breathing space */
+  padding: 10rem 3rem 4rem; /* Increased top padding to give the dynamic top-left heading breathing space */
   flex: 1;
   
   /* Completely hide scrollbar */

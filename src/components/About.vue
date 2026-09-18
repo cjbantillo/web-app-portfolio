@@ -23,6 +23,7 @@
 <script>
 export default {
   name: "About",
+  emits: ["open-modal"],
 };
 </script>
 
@@ -68,6 +69,17 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .about-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .about-nav {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
   .about-avatar {
     float: none;
     display: block;

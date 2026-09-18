@@ -6,10 +6,21 @@
       <div class="orb orb-3"></div>
     </div>
 
-    <!-- Global Logo acts as Home/Close -->
-    <a href="#" class="global-logo" :class="{ 'fade-out': modalScrollTop > 50 }" @click.prevent="activeModal = null" v-show="activeModal !== 'contact'">
-      {{ activeModal ? activeModal.charAt(0).toUpperCase() + activeModal.slice(1) : '{CJB}' }}
-    </a>
+    <!-- Global Header acts as Home/Close + Nav -->
+    <header class="global-header" :class="{ 'fade-out': modalScrollTop > 50 }" v-show="activeModal !== 'contact'">
+      <a href="#" class="global-logo" @click.prevent="activeModal = null">
+        {{ activeModal ? activeModal.charAt(0).toUpperCase() + activeModal.slice(1) : '{CJB}' }}
+      </a>
+
+      <!-- Global Modal Navigation -->
+      <nav class="global-nav" v-show="activeModal">
+        <button class="nav-item" @click="activeModal = null">Home</button>
+        <button class="nav-item" @click="activeModal = 'resume'">Resume</button>
+        <button class="nav-item" @click="activeModal = 'projects'">Projects</button>
+        <button class="nav-item" @click="activeModal = 'expertise'">Expertise</button>
+        <button class="nav-item" @click="activeModal = 'contact'">Contacts</button>
+      </nav>
+    </header>
 
     <!-- Main Full-Screen Hero View -->
     <Hero :isModalOpen="activeModal !== null" @open-modal="activeModal = $event" />
@@ -19,7 +30,7 @@
     <!-- Section Modals -->
     <Transition name="fade">
       <ModalWrapper v-if="activeModal === 'about'" title="About" @close="activeModal = null" @scroll="modalScrollTop = $event">
-        <About />
+        <About @open-modal="activeModal = $event" />
       </ModalWrapper>
     </Transition>
 
@@ -216,30 +227,66 @@ export default {
   }
 }
 
-/* Global Logo */
-.global-logo {
+/* Global Header */
+.global-header {
   position: fixed;
   top: 2.5rem;
   left: 3rem;
-  font-family: "Inter", sans-serif;
-  font-weight: 800;
-  font-size: 2rem;
-  color: #FFFFFF;
-  text-decoration: none;
-  letter-spacing: -1px;
+  right: 3rem;
+  display: flex;
+  align-items: center;
   z-index: 10000;
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.global-logo.fade-out {
+.global-header.fade-out {
   opacity: 0;
   transform: translateY(-15px);
   pointer-events: none;
 }
 
+/* Global Logo */
+.global-logo {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  color: #FFFFFF;
+  text-decoration: none;
+  letter-spacing: -1px;
+  line-height: 1;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s;
+}
+
 .global-logo:hover {
   transform: scale(1.05);
   opacity: 0.8;
+}
+
+/* Global Navigation in Modals */
+.global-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2.5rem;
+}
+
+.global-nav .nav-item {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+  transform-origin: center;
+}
+
+.global-nav .nav-item:hover {
+  color: #fff;
+  transform: scale(1.45);
 }
 
 /* Image Modal */

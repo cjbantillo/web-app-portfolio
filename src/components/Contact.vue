@@ -20,10 +20,12 @@
               class="contact-link"
             >
               <GlowCard class="contact-card card">
-                <div class="contact-icon-wrap"><i :class="m.icon"></i></div>
-                <div class="contact-info">
-                  <h4>{{ m.label }}</h4>
-                  <p>{{ m.value }}</p>
+                <div class="contact-card-inner">
+                  <div class="contact-icon-wrap"><i :class="m.icon"></i></div>
+                  <div class="contact-info">
+                    <h4>{{ m.label }}</h4>
+                    <p>{{ m.value }}</p>
+                  </div>
                 </div>
               </GlowCard>
             </a>
@@ -38,10 +40,12 @@
 </template>
 
 <script>
+import GlowCard from "./GlowCard.vue";
+
 export default {
   name: "Contact",
   components: {
-    GlowCard: () => import("./GlowCard.vue"),
+    GlowCard,
   },
   data() {
     return {
@@ -149,14 +153,16 @@ export default {
 }
 
 .contact-card {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   padding: 1.1rem 1.25rem;
   opacity: 1;
   width: 100%;
   max-width: 300px;
   text-align: left;
+}
+.contact-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .contact-card:hover {
   opacity: 1;

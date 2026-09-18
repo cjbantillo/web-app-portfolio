@@ -105,10 +105,12 @@ const galleryImages = {
   trioRegional: new URL("../assets/img/trio-regional-pitch.jpeg", import.meta.url).href,
 };
 
+import GlowCard from "./GlowCard.vue";
+
 export default {
   name: "Resume",
   components: {
-    GlowCard: () => import("./GlowCard.vue"),
+    GlowCard,
   },
   emits: ["open-image-modal"],
   data() {

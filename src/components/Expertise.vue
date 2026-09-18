@@ -99,10 +99,12 @@ const certFiles = {
   ).href,
 };
 
+import GlowCard from "./GlowCard.vue";
+
 export default {
   name: "Expertise",
   components: {
-    GlowCard: () => import("./GlowCard.vue"),
+    GlowCard,
   },
   emits: ["open-cert-modal"],
   data() {

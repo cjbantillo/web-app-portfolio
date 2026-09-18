@@ -127,15 +127,35 @@ export default {
 .hero-bg-image {
   position: absolute;
   top: 0;
-  /* Make the image wider than the screen and shift it left */
   left: -15%;
   width: 115%;
   height: 100%;
   object-fit: cover;
-  /* Center vertically, left horizontally */
   object-position: right center;
-  z-index: -2;
+  z-index: -3;
+  animation: colorShiftAndMove 30s infinite alternate ease-in-out;
 }
+
+@keyframes colorShiftAndMove {
+  0% {
+    filter: hue-rotate(0deg) saturate(1) brightness(1);
+    transform: scale(1) translateX(0);
+  }
+  33% {
+    filter: hue-rotate(15deg) saturate(1.2) brightness(1.05);
+    transform: scale(1.03) translateX(-1%);
+  }
+  66% {
+    filter: hue-rotate(-10deg) saturate(1.1) brightness(0.95);
+    transform: scale(1.05) translateX(1%);
+  }
+  100% {
+    filter: hue-rotate(25deg) saturate(1.3) brightness(1.1);
+    transform: scale(1.02) translateX(-2%);
+  }
+}
+
+
 
 .hero-overlay {
   position: absolute;

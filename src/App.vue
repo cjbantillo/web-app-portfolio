@@ -9,7 +9,12 @@
     <!-- Global Header acts as Home/Close + Nav -->
     <header class="global-header" :class="{ 'fade-out': modalScrollTop > 50 }" v-show="activeModal !== 'contact'">
       <a href="#" class="global-logo" @click.prevent="activeModal = null">
-        {{ activeModal ? activeModal.charAt(0).toUpperCase() + activeModal.slice(1) : '>_' }}
+        <template v-if="activeModal">
+          {{ activeModal.charAt(0).toUpperCase() + activeModal.slice(1) }}
+        </template>
+        <template v-else>
+          <span class="logo-bracket">&gt;</span><span class="logo-cursor">_</span>
+        </template>
       </a>
 
       <!-- Global Modal Navigation -->
@@ -249,7 +254,7 @@ export default {
 
 /* Global Logo */
 .global-logo {
-  font-family: "Inter", sans-serif;
+  font-family: "Fira Code", "Inter", monospace, sans-serif;
   font-weight: 800;
   font-size: 4rem;
   color: #FFFFFF;
@@ -261,7 +266,30 @@ export default {
 
 .global-logo:hover {
   transform: scale(1.05);
-  opacity: 0.8;
+}
+
+.logo-bracket {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.logo-cursor {
+  color: #4ade80; /* Hacker terminal green */
+  animation: terminalBlink 1s step-start infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes terminalBlink {
+  50% { opacity: 0; }
+}
+
+.global-logo:hover .logo-bracket {
+  color: #4ade80;
+  text-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+}
+
+.global-logo:hover .logo-cursor {
+  text-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
 }
 
 /* Global Navigation in Modals */

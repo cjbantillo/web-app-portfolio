@@ -573,4 +573,10 @@ export default {
     gap: 4rem;
   }
 }
+
+@media (max-width: 768px) {
+  .skills-grid, .certs-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

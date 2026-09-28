@@ -138,19 +138,15 @@ export default {
 
 @keyframes colorShiftAndMove {
   0% {
-    filter: hue-rotate(0deg) saturate(1) brightness(1);
     transform: scale(1) translateX(0);
   }
   33% {
-    filter: hue-rotate(15deg) saturate(1.2) brightness(1.05);
     transform: scale(1.03) translateX(-1%);
   }
   66% {
-    filter: hue-rotate(-10deg) saturate(1.1) brightness(0.95);
     transform: scale(1.05) translateX(1%);
   }
   100% {
-    filter: hue-rotate(25deg) saturate(1.3) brightness(1.1);
     transform: scale(1.02) translateX(-2%);
   }
 }
@@ -260,7 +256,7 @@ export default {
   transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero {
     align-items: center;
     padding-right: 0;
@@ -279,6 +275,12 @@ export default {
     flex-wrap: wrap;
     gap: 1rem;
     border-radius: 16px; /* Adjust pill on mobile */
+  }
+  .hero-bg-image {
+    left: 0;
+    width: 100%;
+    /* Center the image and bias slightly towards the top to keep face/body in frame */
+    object-position: center 25%; 
   }
 }
 </style>

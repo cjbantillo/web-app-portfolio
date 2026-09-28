@@ -556,13 +556,13 @@ export default {
 @media (max-width: 768px) {
   .education-timeline,
   .experience-timeline {
-    padding-left: 1rem;
+    padding-left: 2rem;
   }
   .timeline-rail {
-    left: -0.15rem;
+    left: 0.85rem;
   }
   .timeline-node {
-    left: -1.95rem;
+    left: -0.95rem;
     width: 14px;
     height: 14px;
   }

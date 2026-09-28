@@ -9,7 +9,7 @@
       class="glow-effect"
       :style="{
         opacity: isHovered ? 1 : 0,
-        background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, var(--glow-color, rgba(255,255,255,0.06)), transparent 40%)`
+        background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, var(--glow-color, rgba(255, 255, 255, 0.12)), transparent 40%)`
       }"
     ></div>
     <div class="card-content">

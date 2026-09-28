@@ -8,23 +8,23 @@
 
     <!-- Global Header acts as Home/Close + Nav -->
     <header class="global-header" :class="{ 'fade-out': modalScrollTop > 50 }" v-show="activeModal !== 'contact'">
-      <a href="#" class="global-logo" @click.prevent="activeModal = null">
-        <template v-if="activeModal">
+      <div class="header-top" v-if="activeModal">
+        <a href="#" class="global-logo" @click.prevent="closeModal">
           {{ activeModal.charAt(0).toUpperCase() + activeModal.slice(1) }}
-        </template>
-        <template v-else>
-          <span class="logo-bracket">&gt;</span><span class="logo-cursor">_</span>
-        </template>
-      </a>
+        </a>
+        <button class="hamburger-btn" @click="isMenuOpen = !isMenuOpen" aria-label="Toggle Menu">
+          <i class="fas" :class="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+        </button>
+      </div>
 
       <!-- Global Modal Navigation -->
-      <nav class="global-nav" v-show="activeModal">
-        <button class="nav-item" @click="activeModal = null">Home</button>
-        <button class="nav-item" v-if="activeModal !== 'about'" @click="activeModal = 'about'">About</button>
-        <button class="nav-item" v-if="activeModal !== 'resume'" @click="activeModal = 'resume'">Resume</button>
-        <button class="nav-item" v-if="activeModal !== 'projects'" @click="activeModal = 'projects'">Projects</button>
-        <button class="nav-item" v-if="activeModal !== 'expertise'" @click="activeModal = 'expertise'">Expertise</button>
-        <button class="nav-item" v-if="activeModal !== 'contact'" @click="activeModal = 'contact'">Contacts</button>
+      <nav class="global-nav" :class="{ 'menu-open': isMenuOpen }" v-show="activeModal">
+        <button class="nav-item" @click="navTo(null)">Home</button>
+        <button class="nav-item" v-if="activeModal !== 'about'" @click="navTo('about')">About</button>
+        <button class="nav-item" v-if="activeModal !== 'resume'" @click="navTo('resume')">Resume</button>
+        <button class="nav-item" v-if="activeModal !== 'projects'" @click="navTo('projects')">Projects</button>
+        <button class="nav-item" v-if="activeModal !== 'expertise'" @click="navTo('expertise')">Expertise</button>
+        <button class="nav-item" v-if="activeModal !== 'contact'" @click="navTo('contact')">Contacts</button>
       </nav>
     </header>
 
@@ -111,6 +111,7 @@ export default {
     return {
       activeModal: null,
       modalScrollTop: 0,
+      isMenuOpen: false,
       imageModal: { show: false, src: "", alt: "" },
       certModal: {
         show: false,
@@ -129,6 +130,14 @@ export default {
   },
 
   methods: {
+    navTo(modal) {
+      this.activeModal = modal;
+      this.isMenuOpen = false;
+    },
+    closeModal() {
+      this.activeModal = null;
+      this.isMenuOpen = false;
+    },
     openImageModal(src, alt) {
       this.imageModal = { show: true, src, alt };
     },
@@ -296,24 +305,31 @@ export default {
 .global-nav {
   display: flex;
   gap: 2.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.8rem 2rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .global-nav .nav-item {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.8);
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0;
+  padding: 0.2rem 0.5rem;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
   transform-origin: center;
 }
 
 .global-nav .nav-item:hover {
   color: #fff;
-  transform: scale(1.45);
+  transform: scale(1.15);
 }
 
 /* Image Modal */
@@ -433,5 +449,84 @@ export default {
 
 .cert-download:hover {
   color: var(--text-primary);
+}
+
+/* Header Top Layout */
+.header-top {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .global-header {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .header-top {
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.4rem 1.2rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .global-logo {
+    font-size: 1.8rem;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .global-nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    margin-top: 0.8rem;
+    width: 100%;
+  }
+
+  .global-nav.menu-open {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  .global-nav .nav-item {
+    font-size: 1rem;
+    padding: 0.8rem;
+    white-space: normal;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>

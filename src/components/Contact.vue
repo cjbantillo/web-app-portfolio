@@ -249,5 +249,14 @@ export default {
   .contact-grid {
     grid-template-columns: 1fr;
   }
+  .contact-home-btn {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+  }
+  .contact-image {
+    max-height: 40vh;
+  }
 }
 </style>

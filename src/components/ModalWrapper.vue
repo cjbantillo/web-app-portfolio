@@ -140,14 +140,15 @@ export default {
 
 @media (max-width: 768px) {
   .modal-overlay {
-    padding: 1rem;
+    padding: 0;
   }
   .modal-container {
-    max-height: 90vh;
-    border-radius: 20px;
+    max-height: 100vh;
+    border-radius: 0;
   }
   .modal-content {
-    padding: 1.5rem;
+    /* Adjusted top padding for the new slim horizontal header */
+    padding: 7rem 1.5rem 1.5rem;
   }
 }
 </style>

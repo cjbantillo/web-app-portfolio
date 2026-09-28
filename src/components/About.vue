@@ -68,7 +68,7 @@ export default {
   transition: color 0.35s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about-header {
     display: flex;
     flex-direction: column;

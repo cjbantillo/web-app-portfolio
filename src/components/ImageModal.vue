@@ -46,14 +46,27 @@ export default {
 
 .modal-content {
   position: relative;
-  max-width: 90vw;
+  width: 90vw;
+  max-width: 1400px;
   max-height: 90vh;
+  overflow-y: auto; /* Enable scrolling for long images */
+  border-radius: 8px;
+  background: transparent;
+}
+
+/* Hide scrollbar for clean look */
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+.modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .modal-content img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
+  display: block;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }

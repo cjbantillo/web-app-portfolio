@@ -48,7 +48,7 @@
 
     <Transition name="fade">
       <ModalWrapper v-if="activeModal === 'projects'" title="Projects" @close="activeModal = null" @scroll="modalScrollTop = $event">
-        <Projects @open-modal="activeModal = $event" />
+        <Projects @open-image-modal="openImageModal" @open-modal="activeModal = $event" />
       </ModalWrapper>
     </Transition>
 

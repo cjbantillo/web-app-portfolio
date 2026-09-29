@@ -8,13 +8,18 @@
         <GlowCard class="project-card" v-for="p in projects" :key="p.id">
           <!-- Thumbnail Image if available -->
           <div v-if="p.image" class="project-image-wrap">
-             <img :src="p.image" :alt="p.title" class="project-image" @click="p.gallery ? null : $emit('open-image-modal', p.image, p.title)" :class="{'clickable': !p.gallery}" />
+             <img :src="p.image" :alt="p.title" class="project-image clickable" @click="$emit('open-image-modal', p.image, p.title)" />
           </div>
           <!-- Otherwise Icon -->
           <div v-else class="project-icon"><i :class="p.icon"></i></div>
           
           <div class="project-content">
-            <h3>{{ p.title }}</h3>
+            <div class="project-header">
+              <h3>{{ p.title }}</h3>
+              <a v-if="p.link" :href="p.link" target="_blank" class="live-link" title="Visit Live Site">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
             <p class="project-desc">{{ p.desc }}</p>
             
             <div class="project-stack">
@@ -69,30 +74,58 @@ export default {
         {
           id: 2,
           title: "The Unit",
-          desc: "Full-page website design featuring dynamic layouts and modern UI aesthetics.",
-          stack: ["Web Design", "Frontend"],
+          link: "https://the-unit-singularity.netlify.app/",
+          desc: "Full-page website design featuring dynamic layouts and modern UI aesthetics. Built with Next.js, Tailwind CSS, and Framer Motion.",
+          stack: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
           image: new URL("../assets/projects/websites/the_unit_fullpage.png", import.meta.url).href,
+          gallery: [
+            { src: new URL("../assets/projects/websites/the_unit_fullpage-hero.png", import.meta.url).href, alt: "Hero Section" },
+            { src: new URL("../assets/projects/websites/the_unit_fullpage-about.png", import.meta.url).href, alt: "About Section" },
+            { src: new URL("../assets/projects/websites/the_unit_fullpage-contact.png", import.meta.url).href, alt: "Contact Section" },
+            { src: new URL("../assets/projects/websites/the_unit_fullpage-footer.png", import.meta.url).href, alt: "Footer Section" }
+          ]
         },
         {
           id: 3,
           title: "Oddy Portfolio",
-          desc: "Personal portfolio website tailored to highlight professional experience and creative projects.",
-          stack: ["Vue 3", "Web Design"],
+          link: "https://oddy-monton.netlify.app/",
+          desc: "Video Editor & Visual Creator portfolio website tailored to highlight professional experience and creative projects.",
+          stack: ["HTML", "CSS", "Vanilla JS"],
           image: new URL("../assets/projects/websites/oddy-portfolio.png", import.meta.url).href,
+          gallery: [
+            { src: new URL("../assets/projects/websites/oddy-portfolio-hero.png", import.meta.url).href, alt: "Hero" },
+            { src: new URL("../assets/projects/websites/oddy-portfolio-projects.png", import.meta.url).href, alt: "Projects" },
+            { src: new URL("../assets/projects/websites/oddy-portfolio-achievements.png", import.meta.url).href, alt: "Achievements" },
+            { src: new URL("../assets/projects/websites/oddy-portfolio-contact_and_footer.png", import.meta.url).href, alt: "Contact & Footer" }
+          ]
         },
         {
           id: 4,
           title: "Ken Portfolio",
-          desc: "Sleek and modern portfolio website designed for a creative professional.",
-          stack: ["Web Design", "UI/UX"],
+          link: "https://ken-macasaol.netlify.app/",
+          desc: "A highly customized portfolio blending sleek web design with a distinctive video-production aesthetic.",
+          stack: ["HTML5", "Vanilla CSS", "JavaScript", "Vite"],
           image: new URL("../assets/projects/websites/ken-portfolio.png", import.meta.url).href,
+          gallery: [
+            { src: new URL("../assets/projects/websites/ken-portfolio-hero.png", import.meta.url).href, alt: "Hero Section" },
+            { src: new URL("../assets/projects/websites/ken-portfolio-project.png", import.meta.url).href, alt: "Projects Section" },
+            { src: new URL("../assets/projects/websites/ken-portfolio-graphics.png", import.meta.url).href, alt: "Graphics Section" },
+            { src: new URL("../assets/projects/websites/ken-portfolio-testimonial.png", import.meta.url).href, alt: "Testimonial Section" }
+          ]
         },
         {
           id: 5,
           title: "Julia Portfolio",
-          desc: "Elegant personal portfolio website focused on clean typography and imagery.",
-          stack: ["Web Design", "Frontend"],
+          link: "https://julia-salazar.netlify.app/",
+          desc: "A digital experience crafted for creatives to beautifully display their stories. UI/UX: Prioritizes a clean, dynamic design with carefully curated typography, subtle hover effects, and a mobile-first approach. Tech Stack: Developed with modern HTML, custom CSS for precise styling, and JavaScript for interactive elements.",
+          stack: ["HTML5", "Vanilla CSS", "JavaScript", "UI/UX"],
           image: new URL("../assets/projects/websites/julia-portfolio.png", import.meta.url).href,
+          gallery: [
+            { src: new URL("../assets/projects/websites/julia-portfolio-hero.png", import.meta.url).href, alt: "Hero Section" },
+            { src: new URL("../assets/projects/websites/julia-portfolio-about.png", import.meta.url).href, alt: "About Section" },
+            { src: new URL("../assets/projects/websites/julia-portfolio-expertise.png", import.meta.url).href, alt: "Expertise Section" },
+            { src: new URL("../assets/projects/websites/julia-portfolio-footer.png", import.meta.url).href, alt: "Footer Section" }
+          ]
         }
       ],
     };
@@ -150,10 +183,38 @@ export default {
   flex-grow: 1;
 }
 
-.project-content h3 {
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.5rem;
+}
+
+.project-header h3 {
+  margin-bottom: 0;
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+.live-link {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.live-link:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
 }
 
 .project-desc {

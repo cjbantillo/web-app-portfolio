@@ -24,6 +24,22 @@
         </div>
       </section>
 
+      <!-- Logo Loop Divider -->
+      <div class="tech-loop-container" style="padding: 2rem 0; margin: 1rem 0; height: 100px; display: block; width: 100%; overflow: hidden; position: relative;">
+        <div style="position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);">
+          <LogoLoop
+            :logos="techLogos"
+            :speed="40"
+            direction="left"
+            :logo-height="45"
+            :gap="60"
+            :hover-speed="10"
+            :scale-on-hover="true"
+            :fade-out="false"
+          />
+        </div>
+      </div>
+
       <!-- Column 2: Certifications -->
       <section class="expertise-col">
         <h2 class="section-title">Certifications & Awards</h2>
@@ -100,15 +116,31 @@ const certFiles = {
 };
 
 import GlowCard from "./GlowCard.vue";
+import LogoLoop from "./LogoLoop.vue";
 
 export default {
   name: "Expertise",
   components: {
     GlowCard,
+    LogoLoop,
   },
   emits: ["open-cert-modal"],
   data() {
     return {
+      techLogos: [
+        { node: '<i class="fa-brands fa-vuejs" style="font-size: 2.5rem; color: #42b883;"></i>', title: 'Vue.js' },
+        { node: '<i class="fa-brands fa-react" style="font-size: 2.5rem; color: #61DAFB;"></i>', title: 'React' },
+        { node: '<i class="fa-brands fa-js" style="font-size: 2.5rem; color: #F7DF1E;"></i>', title: 'JavaScript' },
+        { node: '<i class="fa-brands fa-html5" style="font-size: 2.5rem; color: #E34F26;"></i>', title: 'HTML5' },
+        { node: '<i class="fa-brands fa-css3-alt" style="font-size: 2.5rem; color: #1572B6;"></i>', title: 'CSS3' },
+        { node: '<i class="fa-brands fa-node-js" style="font-size: 2.5rem; color: #339933;"></i>', title: 'Node.js' },
+        { node: '<i class="fa-brands fa-python" style="font-size: 2.5rem; color: #3776AB;"></i>', title: 'Python' },
+        { node: '<i class="fa-brands fa-php" style="font-size: 2.5rem; color: #777BB4;"></i>', title: 'PHP' },
+        { node: '<i class="fa-brands fa-laravel" style="font-size: 2.5rem; color: #FF2D20;"></i>', title: 'Laravel' },
+        { node: '<i class="fa-brands fa-docker" style="font-size: 2.5rem; color: #2496ED;"></i>', title: 'Docker' },
+        { node: '<i class="fa-brands fa-github" style="font-size: 2.5rem; color: #ffffff;"></i>', title: 'GitHub' },
+        { node: '<i class="fa-brands fa-figma" style="font-size: 2.5rem; color: #F24E1E;"></i>', title: 'Figma' },
+      ],
       /* --- Skills Data --- */
       skillCategories: [
         {

@@ -64,8 +64,9 @@ export default {
   background: var(--bg-primary);
   border: 1px solid var(--border);
   border-radius: 12px;
-  width: min(980px, 95vw);
-  max-height: 90vh;
+  width: min(1200px, 95vw);
+  height: 90vh;
+  max-height: 95vh;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -75,19 +76,26 @@ export default {
 
 .modal-close {
   position: absolute;
-  top: -3rem;
-  right: 0;
-  background: none;
-  border: none;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 0.5rem;
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .modal-close:hover {
-  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
 }
 
 .cert-modal-title {
@@ -99,7 +107,6 @@ export default {
 .cert-viewer {
   width: 100%;
   flex: 1;
-  min-height: 50vh;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--bg-secondary);
@@ -111,14 +118,13 @@ export default {
 
 .cert-viewer iframe {
   width: 100%;
-  height: 70vh;
+  height: 100%;
   border: none;
 }
 
 .cert-viewer img {
   width: 100%;
-  height: auto;
-  max-height: 70vh;
+  height: 100%;
   object-fit: contain;
 }
 
